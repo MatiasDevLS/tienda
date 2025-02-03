@@ -4,11 +4,26 @@
 [columnAutoWidth]="true"
 id="gridContainer"
 >
+
+<dxo-editing
+        [allowUpdating]="true"
+        [allowAdding]="false"
+        [allowDeleting]="true"
+        mode="row">
+</dxo-editing>
+
 <dxo-filter-row
     [visible]="showFilterRow"
     [applyFilter]="currentFilter"
     
 ></dxo-filter-row>
+
+<dxo-search-panel
+    [visible]="true"
+    [width]="240"
+    placeholder="Buscar"
+    
+></dxo-search-panel>
 
  <dxo-header-filter  [visible]="showHeaderFilter"></dxo-header-filter>
 
@@ -18,8 +33,9 @@ id="gridContainer"
 <dxi-column 
     dataField="id"
     alignment="center"
-    
+    [allowEditing]="false"
     >
+
 </dxi-column>
 <dxi-column 
     dataField="nombre"
@@ -32,10 +48,14 @@ id="gridContainer"
     alignment="center"
     caption="Precio €"
     >
+    <dxo-header-filter
+      [dataSource]="saleAmountHeaderFilter"
+    ></dxo-header-filter>
 </dxi-column>
 <dxi-column 
     dataField="departamento"
     alignment="center"
+    [allowEditing]="false"
     >
 </dxi-column>
 
