@@ -1,0 +1,11 @@
+#letrero{
+    margin-top: 8%;
+    background-color: black;
+    height: 450px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+#textoLetrero{
+    color: white;
+    font-size: xx-large;
+}
