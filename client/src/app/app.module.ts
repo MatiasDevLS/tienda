@@ -9,6 +9,7 @@ import { ListaComponent } from './lista/lista.component';
 import { RegisterComponent } from './register/register.component';
 import { TextInputComponent } from './register/text-input/text-input.component';
 import { NavComponent } from './nav/nav.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavComponent } from './nav/nav.component';
     ListaComponent,
     RegisterComponent,
     TextInputComponent,
-    NavComponent
+    NavComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

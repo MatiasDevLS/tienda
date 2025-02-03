@@ -22,7 +22,7 @@ export class ListaComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.jsonDataSource = new CustomStore({
         key: 'id',
-        loadMode: 'raw', // omit in the DataGrid, TreeList, PivotGrid, and Scheduler
+        loadMode: 'raw',
         load: () => {
             let params: HttpParams = new HttpParams();
             params.set('param1', 'value1');
@@ -30,7 +30,6 @@ export class ListaComponent implements OnInit {
                     params: params
                 }))
                 .then(result => {
-                    // You can process the response here
                     return result;
                 })
                 .catch(() => { throw 'Data loading error' });
