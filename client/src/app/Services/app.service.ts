@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Producto } from '../_models/Producto';
+import { map } from 'rxjs';
  
  
 @Injectable({
@@ -10,7 +11,7 @@ export class AppService {
 
   constructor(private http: HttpClient) {}
   
-  getProductos(){
-    return this.http.get<Producto>('https://localhost:5001/electronica/Productos');
+  getProductos<Producto>(){
+    this.http.get<Producto>('https://localhost:5001/Api/Productos')
   }
 }

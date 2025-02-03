@@ -1,7 +1,9 @@
 <dx-data-grid
 [allowColumnReordering]="true"
-[dataSource]="link"
+[dataSource]="jsonDataSource"
 [columnAutoWidth]="true"
+[rowAlternationEnabled]="true"
+[showBorders]="true"
 id="gridContainer"
 >
 
@@ -23,25 +25,31 @@ id="gridContainer"
     [width]="240"
     placeholder="Buscar"
     
+    
+    
 ></dxo-search-panel>
 
  <dxo-header-filter  [visible]="showHeaderFilter"></dxo-header-filter>
 
  <dxo-paging [pageSize]="10"></dxo-paging>
- <dxo-pager [visible]="true"></dxo-pager>
+ <dxo-pager  
+ [visible]="true"
+ [showNavigationButtons]="showNavButtons"
+ >
+</dxo-pager>
 
 <dxi-column 
     dataField="id"
     alignment="center"
     [allowEditing]="false"
+    [allowHeaderFiltering]="false">
     >
-
 </dxi-column>
 <dxi-column 
     dataField="nombre"
     alignment="center"
+    [allowHeaderFiltering]="false">
     >
-
 </dxi-column>
 <dxi-column 
     dataField="precio"
@@ -57,6 +65,9 @@ id="gridContainer"
     alignment="center"
     [allowEditing]="false"
     >
+    <dxo-header-filter
+    [dataSource]="departamentoHeaderFilter"
+  ></dxo-header-filter>
 </dxi-column>
 
 </dx-data-grid>

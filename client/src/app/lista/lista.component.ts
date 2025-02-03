@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Producto } from '../_models/Producto';
 import { AppService } from '../Services/app.service';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { DxoHeaderFilterComponent } from 'devextreme-angular/ui/nested';
-import { toArray } from 'rxjs';
+import { lastValueFrom, toArray } from 'rxjs';
+import DataSource from 'devextreme/data/data_source';
+import CustomStore from 'devextreme/data/custom_store';
 
  
 @Component({
@@ -14,7 +16,28 @@ import { toArray } from 'rxjs';
 })
 export class ListaComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent | undefined;
+  jsonDataSource: CustomStore;
+  showNavButtons = true;
 
+  constructor(private http: HttpClient) {
+    this.jsonDataSource = new CustomStore({
+        key: 'id',
+        loadMode: 'raw', // omit in the DataGrid, TreeList, PivotGrid, and Scheduler
+        load: () => {
+            let params: HttpParams = new HttpParams();
+            params.set('param1', 'value1');
+            return lastValueFrom(this.http.get('https://localhost:5001/Api/Productos', { 
+                    params: params
+                }))
+                .then(result => {
+                    // You can process the response here
+                    return result;
+                })
+                .catch(() => { throw 'Data loading error' });
+        }
+    });
+}
+  
   applyFilterTypes = [{
     key: 'auto',
     name: 'Immediately',
@@ -25,38 +48,49 @@ export class ListaComponent implements OnInit {
 
   saleAmountHeaderFilter: DxoHeaderFilterComponent['dataSource'] = [{
     text: 'Menos de 50€',
-    value: ['SaleAmount', '<', 50],
+    value: ['precio', '<', 50],
   }, {
     text: '50€ - 250€',
     value: [
-      ['SaleAmount', '>=', 50],
-      ['SaleAmount', '<', 250],
+      ['precio', '>=', 50],
+      ['precio', '<', 250],
     ],
   }, {
     text: '250€ - 1000€',
     value: [
-      ['SaleAmount', '>=', 250],
-      ['SaleAmount', '<', 1000],
+      ['precio', '>=', 250],
+      ['precio', '<', 1000],
     ],
   }, {
     text: '1000€ - 5000€',
     value: [
-      ['SaleAmount', '>=', 1000],
-      ['SaleAmount', '<', 5000],
+      ['precio', '>=', 1000],
+      ['precio', '<', 5000],
     ],
   }, {
     text: 'Mas de 5000€',
-    value: ['SaleAmount', '>=', 5000],
+    value: ['Precio', '>=', 5000],
   }];
   
+
+  departamentoHeaderFilter: DxoHeaderFilterComponent['dataSource'] = [{
+    text: 'Electrodomestico',
+    value: ['departamento',"=" ,"Electrodomestico"]
+  }, {
+    text: 'Informatica',
+    value: [
+      ['departamento', '=', "Informatica"]
+    ],
+  }];
+
   showFilterRow = true;
   currentFilter = this.applyFilterTypes[0].key;
   showHeaderFilter = true;
-  valores : Producto[] | undefined;
+  valores : Producto[] | any;
   link: string = 'https://localhost:5001/Api/Productos';
 
 
-    constructor(private service: AppService, private http: HttpClient) {}
+
 
   ngOnInit(): void {
     
