@@ -59,7 +59,6 @@ namespace Api.Controllers
 
                 };
 
-                producto.Informaticas= productoInfor;
 
                 _context.Productos.Add(producto);
                 await _context.SaveChangesAsync();
@@ -78,23 +77,24 @@ namespace Api.Controllers
 
                 var productoElec = new Electrodomestico
                 {
-                    Id = id,
-                    Nombre = nombre,
-                    Precio = precio,
-                    Consumo = consumo,
-                    Localizacion = localizacion,
-                    Descripcion = descripcion,
-                    Marca = marca,
-                    Producto = producto
-
+                        Id = id,
+                        Nombre = nombre,
+                        Precio = precio,
+                        Consumo = consumo,
+                        Localizacion = localizacion,
+                        Descripcion = descripcion,
+                        Marca = marca,
+                        ProductoId = id,
+                        Producto = producto
                 };
-
-                producto.Electrodomesticos=productoElec;
+                
+                producto.Electrodomesticos = productoElec;
                 _context.Productos.Add(producto);
+
                 await _context.SaveChangesAsync();
 
                 return producto;
             }
         }
-    }
+    } 
 }

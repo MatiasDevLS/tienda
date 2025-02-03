@@ -1,10 +1,24 @@
 <dx-data-grid
 [allowColumnReordering]="true"
 [dataSource]="link"
+[columnAutoWidth]="true"
+id="gridContainer"
 >
+<dxo-filter-row
+    [visible]="showFilterRow"
+    [applyFilter]="currentFilter"
+    
+></dxo-filter-row>
+
+ <dxo-header-filter  [visible]="showHeaderFilter"></dxo-header-filter>
+
+ <dxo-paging [pageSize]="10"></dxo-paging>
+ <dxo-pager [visible]="true"></dxo-pager>
+
 <dxi-column 
     dataField="id"
     alignment="center"
+    
     >
 </dxi-column>
 <dxi-column 
@@ -16,6 +30,7 @@
 <dxi-column 
     dataField="precio"
     alignment="center"
+    caption="Precio €"
     >
 </dxi-column>
 <dxi-column 

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("electronica/[controller]")]
+    [Route("Api/[controller]")]
         public class BaseApiController : ControllerBase
     {
         

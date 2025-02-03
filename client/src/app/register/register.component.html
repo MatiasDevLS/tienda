@@ -1,7 +1,6 @@
-<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
-    <h2 class="text-center text-primary">Introduzca el producto</h2>
-    <hr>
+<h2 id="letrero" class="text-center">Introduzca el producto</h2>
 
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
 
     <app-text-input [formControl]="$any(registerForm.controls['id'])"
         [label]="'Id'"></app-text-input>
