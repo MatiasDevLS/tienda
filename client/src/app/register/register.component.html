@@ -1,0 +1,55 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
+    <h2 class="text-center text-primary">Introduzca el producto</h2>
+    <hr>
+
+
+    <app-text-input [formControl]="$any(registerForm.controls['id'])"
+        [label]="'Id'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['nombre'])"
+        [label]="'Nombre'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['precio'])"
+        [label]="'Precio'"></app-text-input>
+
+        <div class="mb-3">
+            <label style="margin-right:10px;">Departamento: </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="Infor" formControlName="departamento" (click)="comprobarInformatica()"> Informática
+            </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input ms-3" value="Elec" formControlName="departamento" (click)="comprobarElectrodomesticos()"> Electrodomésticos
+            </label>
+        </div>
+        
+        <div class="mb-3" [hidden]="!boolElec && !boolInfor">
+            <app-text-input [formControl]="$any(registerForm.controls['descripcion'])"
+            [label]="'Descripcion'"></app-text-input>
+            <app-text-input [formControl]="$any(registerForm.controls['marca'])"
+            [label]="'Marca'"></app-text-input>
+            <p>Opcionales: </p>
+        </div>
+
+        <div class="mb-3" [hidden]="!boolElec">
+            <app-text-input [formControl]="$any(registerForm.controls['consumo'])"
+            [label]="'Consumo'"></app-text-input>
+            <app-text-input [formControl]="$any(registerForm.controls['localizacion'])"
+            [label]="'Localizacion'"></app-text-input>
+        </div>
+
+        <div class="mb-3" [hidden]="!boolInfor">
+            <app-text-input [formControl]="$any(registerForm.controls['tipo'])"
+            [label]="'Tipo'"></app-text-input>
+        </div>
+
+    <div class="row" *ngIf="validationErrors">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+    <div class="text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" (click)="registrar()">Register</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+    </div>
+</form>
+

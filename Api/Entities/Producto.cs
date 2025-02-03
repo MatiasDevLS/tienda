@@ -13,8 +13,8 @@ namespace Api.Data
         public int Precio { get; set; }
         public string Departamento { get; set; }
 
-        public List<Electrodomestico> Electrodomesticos { get;set;}
+        public Electrodomestico Electrodomesticos { get;set;}
 
-        public List<Informatica> Informaticas { get;set;}
+        public Informatica Informaticas { get;set;}
     }
 }
