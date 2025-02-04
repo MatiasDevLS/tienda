@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj": {}
+    "C:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj": {}
   },
   "projects": {
-    "c:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj": {
+    "C:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "c:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj",
+        "projectPath": "C:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj",
         "packagesPath": "C:\\Users\\PRACTICAS\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\obj\\",
+        "outputPath": "C:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PRACTICAS\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -2,6 +2,7 @@
 using Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250204095428_cambiosIDE")]
+    partial class cambiosIDE
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -58,12 +61,12 @@ namespace Api.Data.Migrations
                     b.Property<int>("Precio")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ProductoId")
+                    b.Property<string>("ProductoIdE")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductoId");
+                    b.HasIndex("ProductoIdE");
 
                     b.ToTable("Electrodomestico");
                 });
@@ -102,7 +105,7 @@ namespace Api.Data.Migrations
                 {
                     b.HasOne("Api.Data.Producto", "Producto")
                         .WithMany("Electrodomesticos")
-                        .HasForeignKey("ProductoId");
+                        .HasForeignKey("ProductoIdE");
 
                     b.Navigation("Producto");
                 });

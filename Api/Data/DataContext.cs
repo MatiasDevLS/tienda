@@ -15,7 +15,6 @@ namespace Api.Data
         }
 
         public DbSet<Producto> Productos { get; set; }
-        public DbSet<Electrodomestico> Electrodomesticos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,14 +23,12 @@ namespace Api.Data
             modelBuilder.Entity<Electrodomestico>()
             .HasOne(p => p.Producto)
             .WithMany(c => c.Electrodomesticos)
-            .HasForeignKey(p => p.ProductoId)
-            .IsRequired();
+            .HasForeignKey(p => p.ProductoId);
 
             modelBuilder.Entity<Informatica>()
             .HasOne(p => p.Producto)
             .WithMany(c => c.Informaticas)
-            .HasForeignKey(p => p.ProductoId)
-            .IsRequired();
+            .HasForeignKey(p => p.ProductoId);
         }
     }
 }

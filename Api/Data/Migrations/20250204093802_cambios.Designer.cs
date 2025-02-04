@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250203101815_CambiosData")]
-    partial class CambiosData
+    [Migration("20250204093802_cambios")]
+    partial class cambios
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,9 +62,12 @@ namespace Api.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProductoId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductoId");
 
                     b.ToTable("Electrodomestico");
                 });
@@ -86,41 +89,47 @@ namespace Api.Data.Migrations
                     b.Property<int>("Precio")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ProductoId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Tipo")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductoId");
+
                     b.ToTable("Informatica");
-                });
-
-            modelBuilder.Entity("Api.Data.Producto", b =>
-                {
-                    b.HasOne("Api.Entities.Electrodomestico", "Electrodomesticos")
-                        .WithOne("Producto")
-                        .HasForeignKey("Api.Data.Producto", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Api.Entities.Informatica", "Informaticas")
-                        .WithOne("Producto")
-                        .HasForeignKey("Api.Data.Producto", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Electrodomesticos");
-
-                    b.Navigation("Informaticas");
                 });
 
             modelBuilder.Entity("Api.Entities.Electrodomestico", b =>
                 {
+                    b.HasOne("Api.Data.Producto", "Producto")
+                        .WithMany("Electrodomesticos")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Producto");
                 });
 
             modelBuilder.Entity("Api.Entities.Informatica", b =>
                 {
+                    b.HasOne("Api.Data.Producto", "Producto")
+                        .WithMany("Informaticas")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Producto");
+                });
+
+            modelBuilder.Entity("Api.Data.Producto", b =>
+                {
+                    b.Navigation("Electrodomesticos");
+
+                    b.Navigation("Informaticas");
                 });
 #pragma warning restore 612, 618
         }
