@@ -15,6 +15,7 @@ namespace Api.Data
         }
 
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Electrodomestico> Electrodomesticos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

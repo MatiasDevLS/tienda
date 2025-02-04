@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Data;
+using Api.DTOs;
 using Api.Entities;
 using API.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -34,34 +35,35 @@ namespace Api.Controllers
         }
 
         [HttpPost("registro")]
-        public async Task<ActionResult<Producto>> Registro(string id, string nombre, string marca, string descripcion, string localizacion, string valor , string tipo = "vacio" ,string consumo = "vacio", int precio = 0)
+        public async Task<ActionResult<Producto>> Registro(ProductoDto productoDto)
         {
-            if (valor == "infor")
+            if (productoDto.Departamento == "infor")
             {
 
                 var producto = new Producto
                 {
-                    Id = id,
-                    Nombre = nombre,
-                    Precio = precio,
+                    Id = productoDto.Id,
+                    Nombre = productoDto.Nombre,
+                    Precio = productoDto.Precio,
                     Departamento = "Informatica"
                 };
 
                 var productoInfor = new Informatica
                 {
-                    Id = id,
-                    Nombre = nombre,
-                    Precio = precio,
-                    Tipo = tipo,
-                    Descripcion = descripcion,
-                    Marca = marca,
-                    ProductoId = id,
+                    Id = productoDto.Id,
+                    Nombre = productoDto.Nombre,
+                    Precio = productoDto.Precio,
+                    Tipo = productoDto.Tipo,
+                    Descripcion = productoDto.Descripcion,
+                    Marca = productoDto.Marca,
+                    ProductoId = productoDto.Id,
                     Producto = producto
 
                 };
 
                 producto.Informaticas.Add(productoInfor);
                 _context.Productos.Add(producto);
+
                 await _context.SaveChangesAsync();
 
                 return producto;
@@ -70,27 +72,29 @@ namespace Api.Controllers
 
                 var producto = new Producto
                 {
-                    Id = id,
-                    Nombre = nombre,
-                    Precio = precio,
+                    Id = productoDto.Id,
+                    Nombre = productoDto.Nombre,
+                    Precio = productoDto.Precio,
                     Departamento = "Electrodomestico",
                     Electrodomesticos = []
                 };
 
                 var productoElec = new Electrodomestico
                 {
-                        Id = id,
-                        Nombre = nombre,
-                        Precio = precio,
-                        Consumo = consumo,
-                        Localizacion = localizacion,
-                        Descripcion = descripcion,
-                        Marca = marca,
-                        ProductoId = id
+                        Id = productoDto.Id,
+                        Nombre = productoDto.Nombre,
+                        Precio = productoDto.Precio,
+                        Consumo = productoDto.Consumo,
+                        Localizacion = productoDto.Localizacion,
+                        Descripcion = productoDto.Descripcion,
+                        Marca = productoDto.Marca,
+                        ProductoId = productoDto.Id,
+                        Producto = producto
                 };
                 
                 producto.Electrodomesticos.Add(productoElec);
                 _context.Productos.Add(producto);
+                _context.Electrodomesticos.Add(productoElec);
 
                 await _context.SaveChangesAsync();
 
