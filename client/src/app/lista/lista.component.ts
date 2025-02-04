@@ -7,6 +7,8 @@ import { DxoHeaderFilterComponent } from 'devextreme-angular/ui/nested';
 import { lastValueFrom, toArray } from 'rxjs';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
+import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import { ProductoService } from '../Services/Producto.Service';
 
  
 @Component({
@@ -14,12 +16,14 @@ import CustomStore from 'devextreme/data/custom_store';
     templateUrl: './lista.component.html',
     styleUrls: ['./lista.component.css']
 })
-export class ListaComponent implements OnInit {
-  @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent | undefined;
+export class ListaComponent {
+  @ViewChild(DxDataGridComponent, { static: false }) dataGrid!: DxDataGridComponent;
   jsonDataSource: CustomStore;
   showNavButtons = true;
 
-  constructor(private http: HttpClient) {
+  selectedItemKeys: string[] = [];
+
+  constructor(private http: HttpClient, private servicio: ProductoService) {
     this.jsonDataSource = new CustomStore({
         key: 'id',
         loadMode: 'raw',
@@ -85,16 +89,14 @@ export class ListaComponent implements OnInit {
   showFilterRow = true;
   currentFilter = this.applyFilterTypes[0].key;
   showHeaderFilter = true;
-  valores : Producto[] | any;
-  link: string = 'https://localhost:5001/Api/Productos';
+  valor: string ="";
 
-
-
-
-  ngOnInit(): void {
-    
+  eliminar(){
+    this.servicio.eliminar(this.valor).subscribe({
+      next: () => this.dataGrid.instance.refresh()
+    });
+    ;
   }
 
-    
-  
 }
+

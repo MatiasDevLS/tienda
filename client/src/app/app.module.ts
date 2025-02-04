@@ -28,7 +28,8 @@ import { VisualComponent } from './visual/visual.component';
     DxDataGridModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DxButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

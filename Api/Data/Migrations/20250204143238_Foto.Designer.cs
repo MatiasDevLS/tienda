@@ -2,6 +2,7 @@
 using Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250204143238_Foto")]
+    partial class Foto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
@@ -22,6 +25,9 @@ namespace Api.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Departamento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FotoUrl")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nombre")

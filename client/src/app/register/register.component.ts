@@ -39,6 +39,7 @@ export class RegisterComponent {
         localizacion: ['',],
         descripcion: ['',Validators.required],
         marca: ['', Validators.required],
+        fotoUrl: ['', Validators.required],
         tipo: [''],
     });
   }

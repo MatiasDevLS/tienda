@@ -8,11 +8,12 @@ id="gridContainer"
 >
 
 <dxo-editing
-        [allowUpdating]="true"
+        [allowUpdating]="false"
         [allowAdding]="false"
-        [allowDeleting]="true"
+        [allowDeleting]="false"
         mode="row">
 </dxo-editing>
+>
 
 <dxo-filter-row
     [visible]="showFilterRow"
@@ -71,3 +72,16 @@ id="gridContainer"
 </dxi-column>
 
 </dx-data-grid>
+<div>
+    <form #registerForm="ngForm" (ngSubmit)="eliminar()">
+        <table>
+            <tr>
+                <td id="input"><input type="text" placeholder="Introduzca el id" name="valor" class="form-control" [(ngModel)]="valor"></td>
+                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
+            </tr>
+        </table>
+      
+      
+    </form>
+      
+  </div>

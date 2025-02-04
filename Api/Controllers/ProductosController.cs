@@ -79,7 +79,6 @@ namespace Api.Controllers
                     Id = productoDto.Id,
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
-                    FotoUrl = productoDto.FotoUrl,
                     Departamento = "Informatica",
                     Electrodomesticos = [],
                     Informaticas = []
@@ -112,7 +111,6 @@ namespace Api.Controllers
                     Id = productoDto.Id,
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
-                    FotoUrl = productoDto.FotoUrl,
                     Departamento = "Electrodomestico",
                     Electrodomesticos = [],
                     Informaticas = []
@@ -139,6 +137,19 @@ namespace Api.Controllers
 
                 return producto;
             }
+        }
+
+        [HttpDelete("borrar/{id}")]
+        public async Task<ActionResult> DeleteProducto (string id)
+        {
+            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            
+            _context.Productos.Remove(producto);
+            
+            await _context.SaveChangesAsync();
+            
+            return Ok();   
+            
         }
     } 
 }

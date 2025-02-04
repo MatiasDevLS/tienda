@@ -9,4 +9,5 @@ export interface Producto {
     consumo: string
     localizacion: string
     valor: string
+    fotoUrl: string
 }
