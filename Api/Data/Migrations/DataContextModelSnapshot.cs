@@ -32,7 +32,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Productos");
+                    b.ToTable("Productos", (string)null);
                 });
 
             modelBuilder.Entity("Api.Entities.Electrodomestico", b =>
@@ -63,7 +63,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Electrodomestico");
+                    b.ToTable("Electrodomestico", (string)null);
                 });
 
             modelBuilder.Entity("Api.Entities.Informatica", b =>
@@ -88,7 +88,7 @@ namespace Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Informatica");
+                    b.ToTable("Informatica", (string)null);
                 });
 
             modelBuilder.Entity("Api.Data.Producto", b =>

@@ -1,0 +1,20 @@
+#carta{
+    margin-top: 8%;
+    height: 550px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+.card-text{
+    padding-top: 1%;
+    font-size: small;
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+img {
+    margin-top: 13%;
+    height: 80%;
+    width: auto;
+    border: 1px white solid;
+    box-shadow: 2px 2px 2px white;
+}

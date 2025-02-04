@@ -22,14 +22,14 @@ namespace Api.Data
 
             modelBuilder.Entity<Electrodomestico>()
             .HasOne(p => p.Producto)
-            .WithOne(c => c.Electrodomesticos)
-            .HasForeignKey<Producto>(p => p.Id)
+            .WithMany(c => c.Electrodomesticos)
+            .HasForeignKey(p => p.ProductoId)
             .IsRequired();
 
             modelBuilder.Entity<Informatica>()
             .HasOne(p => p.Producto)
-            .WithOne(c => c.Informaticas)
-            .HasForeignKey<Producto>(p => p.Id)
+            .WithMany(c => c.Informaticas)
+            .HasForeignKey(p => p.ProductoId)
             .IsRequired();
         }
     }

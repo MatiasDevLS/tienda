@@ -55,11 +55,12 @@ namespace Api.Controllers
                     Tipo = tipo,
                     Descripcion = descripcion,
                     Marca = marca,
+                    ProductoId = id,
                     Producto = producto
 
                 };
 
-
+                producto.Informaticas.Add(productoInfor);
                 _context.Productos.Add(producto);
                 await _context.SaveChangesAsync();
 
@@ -72,7 +73,8 @@ namespace Api.Controllers
                     Id = id,
                     Nombre = nombre,
                     Precio = precio,
-                    Departamento = "Electrodomestico"
+                    Departamento = "Electrodomestico",
+                    Electrodomesticos = []
                 };
 
                 var productoElec = new Electrodomestico
@@ -84,11 +86,10 @@ namespace Api.Controllers
                         Localizacion = localizacion,
                         Descripcion = descripcion,
                         Marca = marca,
-                        ProductoId = id,
-                        Producto = producto
+                        ProductoId = id
                 };
                 
-                producto.Electrodomesticos = productoElec;
+                producto.Electrodomesticos.Add(productoElec);
                 _context.Productos.Add(producto);
 
                 await _context.SaveChangesAsync();

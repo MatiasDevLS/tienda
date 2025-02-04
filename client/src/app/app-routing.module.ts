@@ -4,11 +4,13 @@ import { ListaComponent } from './lista/lista.component';
 import { RegisterComponent } from './register/register.component';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { VisualComponent } from './visual/visual.component';
 
 const routes: Routes = [
-  {path: '', component: InicioComponent},
+  {path: 'inicio', component: InicioComponent},
   {path: 'datos', component: ListaComponent},
-  {path: 'registro', component: RegisterComponent}
+  {path: 'registro', component: RegisterComponent},
+  {path: 'visual', component: VisualComponent}
 ];
 
 @NgModule({
