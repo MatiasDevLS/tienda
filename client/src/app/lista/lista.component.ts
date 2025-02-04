@@ -4,7 +4,7 @@ import { Producto } from '../_models/Producto';
 import { AppService } from '../Services/app.service';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { DxoHeaderFilterComponent } from 'devextreme-angular/ui/nested';
-import { lastValueFrom, toArray } from 'rxjs';
+import { delay, lastValueFrom, toArray } from 'rxjs';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
@@ -16,7 +16,7 @@ import { ProductoService } from '../Services/Producto.Service';
     templateUrl: './lista.component.html',
     styleUrls: ['./lista.component.css']
 })
-export class ListaComponent {
+export class ListaComponent{
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid!: DxDataGridComponent;
   jsonDataSource: CustomStore;
   showNavButtons = true;
@@ -40,6 +40,7 @@ export class ListaComponent {
         }
     });
 }
+
   
   applyFilterTypes = [{
     key: 'auto',
@@ -97,6 +98,7 @@ export class ListaComponent {
     });
     ;
   }
+
 
 }
 
