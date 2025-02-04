@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductoService } from '../Services/Producto.Service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Producto } from '../_models/Producto';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,6 +15,7 @@ export class RegisterComponent {
   boolInfor: boolean = false;
   boolElec: boolean = false;
   model: any = {}
+  producto!: Producto
   
   constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService) { }
 
@@ -52,14 +54,11 @@ export class RegisterComponent {
   }
 
   registrar() {
-    const values = {...this.registerForm.value};
-    this.productoService.register(values).subscribe({
+    this.producto = {...this.registerForm.value};
+    this.productoService.register(this.producto).subscribe({
       next: () => {
         this.router.navigateByUrl('datos')
-      },
-      error: error => {
-        this.validationErrors = error
-      } 
+      }
     })
   }
 

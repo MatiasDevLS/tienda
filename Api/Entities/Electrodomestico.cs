@@ -15,6 +15,7 @@ namespace Api.Entities
         public string Localizacion { get; set; }
         public string Descripcion { get; set; }
         public string Marca { get; set; }
+        public string FotoUrl { get; set; }
 
         public string ProductoId { get; set; }
         public Producto Producto { get; set; }

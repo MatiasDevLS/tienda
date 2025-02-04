@@ -13,18 +13,14 @@ export class ProductoService {
     currentProducto = this.currentProductoSource.asObservable();
     constructor(private http: HttpClient) {}
 
-    register(model: any){
-        return this.http.post<Producto>(this.baseUrl + 'registro', model).pipe(
-          map(prod => {
-            if (prod) {
-              this.setCurrentProducto(prod);
-            }
-          })
-        )
+    register(model: Producto){
+        console.log(model)
+        return this.http.post<Producto>(this.baseUrl + 'Productos/registro', model)
       }
     
       setCurrentProducto(producto: Producto){
         localStorage.setItem('producto', JSON.stringify(producto));
+        this.currentProductoSource.next(producto);
       }
 
       getProducto(id: string) {

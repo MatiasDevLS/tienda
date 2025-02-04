@@ -46,9 +46,9 @@
             </li>
         </ul>
     </div>
-    <div class="text-center">
-        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" (click)="registrar()">Register</button>
-        <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+    <div class="text-center"> 
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" (click)="registrar()" routerLink="../datos">Registrar</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
     </div>
 </form>
 

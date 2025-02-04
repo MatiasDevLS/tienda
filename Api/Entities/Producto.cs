@@ -12,6 +12,7 @@ namespace Api.Data
         public required string Nombre { get; set; }
         public int Precio { get; set; }
         public string Departamento { get; set; }
+        public string FotoUrl { get; set; }
 
         public List<Electrodomestico> Electrodomesticos { get;set;}
 

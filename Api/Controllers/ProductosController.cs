@@ -40,6 +40,7 @@ namespace Api.Controllers
                     Id = PdInformatica.Id,
                     Nombre = PdInformatica.Nombre,
                     Precio = PdInformatica.Precio,
+                    FotoUrl = PdInformatica.FotoUrl,
                     Tipo = PdInformatica.Tipo,
                     Descripcion = PdInformatica.Descripcion,
                     Marca = PdInformatica.Marca,
@@ -56,6 +57,7 @@ namespace Api.Controllers
                         Nombre = PdElectrodomesticos.Nombre,
                         Precio = PdElectrodomesticos.Precio,
                         Consumo = PdElectrodomesticos.Consumo,
+                        FotoUrl = PdElectrodomesticos.FotoUrl,
                         Localizacion = PdElectrodomesticos.Localizacion,
                         Descripcion = PdElectrodomesticos.Descripcion,
                         Marca = PdElectrodomesticos.Marca,
@@ -69,7 +71,7 @@ namespace Api.Controllers
         [HttpPost("registro")]
         public async Task<ActionResult<Producto>> Registro(ProductoDto productoDto)
         {
-            if (productoDto.Departamento == "infor")
+            if (productoDto.Departamento == "Infor")
             {
 
                 var producto = new Producto
@@ -77,6 +79,7 @@ namespace Api.Controllers
                     Id = productoDto.Id,
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
+                    FotoUrl = productoDto.FotoUrl,
                     Departamento = "Informatica",
                     Electrodomesticos = [],
                     Informaticas = []
@@ -89,6 +92,7 @@ namespace Api.Controllers
                     Precio = productoDto.Precio,
                     Tipo = productoDto.Tipo,
                     Descripcion = productoDto.Descripcion,
+                    FotoUrl = productoDto.FotoUrl,
                     Marca = productoDto.Marca,
                     ProductoId = productoDto.Id,
                     Producto = producto
@@ -108,6 +112,7 @@ namespace Api.Controllers
                     Id = productoDto.Id,
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
+                    FotoUrl = productoDto.FotoUrl,
                     Departamento = "Electrodomestico",
                     Electrodomesticos = [],
                     Informaticas = []
@@ -118,6 +123,7 @@ namespace Api.Controllers
                         Id = productoDto.Id,
                         Nombre = productoDto.Nombre,
                         Precio = productoDto.Precio,
+                        FotoUrl = productoDto.FotoUrl,
                         Consumo = productoDto.Consumo,
                         Localizacion = productoDto.Localizacion,
                         Descripcion = productoDto.Descripcion,

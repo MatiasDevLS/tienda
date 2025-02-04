@@ -16,5 +16,6 @@ namespace Api.DTOs
         public string Marca { get; set; }
         public string Consumo { get; set; }
         public string Localizacion { get; set; }
+        public string FotoUrl { get; set; }
     }
 }
