@@ -16,5 +16,10 @@ namespace Api.Data
         public List<Electrodomestico> Electrodomesticos { get;set;}
 
         public List<Informatica> Informaticas { get;set;}
+
+        internal object Include(Func<object, object> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

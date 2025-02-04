@@ -26,5 +26,9 @@ export class ProductoService {
       setCurrentProducto(producto: Producto){
         localStorage.setItem('producto', JSON.stringify(producto));
       }
+
+      getProducto(id: string) {
+        return this.http.get<Producto>(this.baseUrl + 'Productos/' + id);
+      }
 }
 

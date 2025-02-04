@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center" [hidden]="!BolElectrodomesticos">
         <div>
             <div id="carta" class="card border-secondary mb-3 text-bg-dark" style="max-width: 1200px;">
                 <div class="row g-0">
@@ -12,15 +12,15 @@
                         Producto
                       </div>
                     <div class="card-body">
-                      <p class="card-text">Id: </p>
-                      <p class="card-text">Nombre: </p>
-                      <p class="card-text">Precio: </p>
-                      <p class="card-text">Tipo: </p>
-                      <p class="card-text">Descripción: Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
-                      <p class="card-text">Marca: </p>
+                      <p class="card-text">Id: {{producto.id}}</p>
+                      <p class="card-text">Nombre: {{producto.nombre}} </p>
+                      <p class="card-text">Precio: {{producto.precio}}€ </p>
+                      <p class="card-text">Consumo: {{producto.consumo}} </p>
+                      <p class="card-text">Descripción: {{producto.descripcion}} </p>
+                      <p class="card-text">Marca: {{producto.marca}}</p>
                     </div>
                     <div class="card-footer">
-                        Departamento de: Informática
+                        Departamento de: Electrodomésticos
                       </div>
                   </div>
                 </div>

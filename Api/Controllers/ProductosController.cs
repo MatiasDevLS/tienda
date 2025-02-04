@@ -28,9 +28,41 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Producto>> GetProductoById(string id)
+        public async Task<ActionResult<ProductoDto>> GetProductoById(string id)
         {
-            return await _context.Productos.FindAsync(id);
+            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+
+            if (producto.Informaticas.Count()>0){
+                var PdInformatica = producto.Informaticas[0];
+
+                var productoDto = new ProductoDto
+                    {
+                    Id = PdInformatica.Id,
+                    Nombre = PdInformatica.Nombre,
+                    Precio = PdInformatica.Precio,
+                    Tipo = PdInformatica.Tipo,
+                    Descripcion = PdInformatica.Descripcion,
+                    Marca = PdInformatica.Marca,
+                    Departamento = "Informatica"
+                    };
+                return  productoDto;
+            }
+            else{
+                var PdElectrodomesticos = producto.Electrodomesticos[0];
+
+                var productoDto = new ProductoDto
+                    {
+                        Id = PdElectrodomesticos.Id,
+                        Nombre = PdElectrodomesticos.Nombre,
+                        Precio = PdElectrodomesticos.Precio,
+                        Consumo = PdElectrodomesticos.Consumo,
+                        Localizacion = PdElectrodomesticos.Localizacion,
+                        Descripcion = PdElectrodomesticos.Descripcion,
+                        Marca = PdElectrodomesticos.Marca,
+                        Departamento = "Electrodomesticos"
+                    };
+                return  productoDto;
+            }
 
         }
 
@@ -45,7 +77,9 @@ namespace Api.Controllers
                     Id = productoDto.Id,
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
-                    Departamento = "Informatica"
+                    Departamento = "Informatica",
+                    Electrodomesticos = [],
+                    Informaticas = []
                 };
 
                 var productoInfor = new Informatica
