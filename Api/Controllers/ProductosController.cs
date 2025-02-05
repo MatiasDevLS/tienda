@@ -151,5 +151,39 @@ namespace Api.Controllers
             return Ok();   
             
         }
+
+        [HttpPost("cambios")]
+        public async Task<ActionResult> UpdateUser( ProductoDto productoDto)
+        {
+            var productoActualizar = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id);
+
+            _context.Productos.Remove(await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id));
+
+            await _context.SaveChangesAsync();
+
+            productoActualizar.Nombre = productoDto.Nombre;
+            productoActualizar.Precio = productoDto.Precio;
+            if (productoDto.Departamento == "Electrodomesticos"){
+                productoActualizar.Electrodomesticos[0].Descripcion = productoDto.Descripcion;
+                productoActualizar.Electrodomesticos[0].Marca = productoDto.Marca;
+                productoActualizar.Electrodomesticos[0].FotoUrl = productoDto.FotoUrl;
+                productoActualizar.Electrodomesticos[0].Consumo = productoDto.Consumo;
+                productoActualizar.Electrodomesticos[0].Localizacion = productoDto.Localizacion;
+            }
+            else{
+                productoActualizar.Informaticas[0].Descripcion = productoDto.Descripcion;
+                productoActualizar.Informaticas[0].Marca = productoDto.Marca;
+                productoActualizar.Informaticas[0].FotoUrl = productoDto.FotoUrl;
+                productoActualizar.Informaticas[0].Tipo = productoDto.Tipo;
+            }
+            
+            _context.Productos.Add(productoActualizar);
+            
+            await _context.SaveChangesAsync();
+
+            return Ok();
+
+            
+        }
     } 
 }

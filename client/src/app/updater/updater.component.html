@@ -1,0 +1,49 @@
+<h2 id="letrero" class="text-center">Departamento de {{productoEncontrado.departamento}}</h2>
+<h3 id="letrero" class="text-center">Actualizar el producto con id: {{id}}</h3>
+
+
+<form  [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
+    <p>Nombre:</p>
+    <app-text-input [formControl]="$any(registerForm.controls['nombre'])"
+        [label]="'Nombre'"></app-text-input>
+    <p>Precio:</p>
+    <app-text-input [formControl]="$any(registerForm.controls['precio'])"
+        [label]="'Precio'"></app-text-input>
+    <p>Descripción:</p>
+    <app-text-input [formControl]="$any(registerForm.controls['descripcion'])"
+        [label]="'Descripcion'"></app-text-input>
+    <p>Marca:</p>
+    <app-text-input [formControl]="$any(registerForm.controls['marca'])"
+        [label]="'Marca'"></app-text-input>
+    <p>Url de la foto:</p>
+    <app-text-input [formControl]="$any(registerForm.controls['fotoUrl'])"
+        [label]="'FotoUrl'"></app-text-input>
+
+        <div class="mb-3" *ngIf="boolElec">
+            <p>Consumo:</p>
+            <app-text-input [formControl]="$any(registerForm.controls['consumo'])"
+            [label]="'Consumo'"></app-text-input>
+            <p>Localización:</p>
+            <app-text-input [formControl]="$any(registerForm.controls['localizacion'])"
+            [label]="'Localizacion'"></app-text-input>
+        </div>
+
+        <div class="mb-3" *ngIf="boolInfor">
+            <p>Tipo:</p>
+            <app-text-input [formControl]="$any(registerForm.controls['tipo'])"
+            [label]="'Tipo'"></app-text-input>
+        </div>
+
+    <div class="row" *ngIf="validationErrors">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+    <div class="text-center"> 
+        <button [disabled]="!registerForm.valid" class="btn btn-warning me-2" type="submit" (click)="registrar()" routerLink="../datos">Actualizar</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
+    </div>
+</form>
+

@@ -23,5 +23,9 @@ export class ProductoService {
       eliminar(id: string){
         return this.http.delete<Producto>(this.baseUrl + 'Productos/borrar/'+ id)
       }
+
+      actualizar(model: Producto){
+        return this.http.post(this.baseUrl + 'Productos/cambios', model)
+      }
 }
 
