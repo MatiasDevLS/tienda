@@ -8,14 +8,17 @@ import { UpdaterComponent } from './updater/updater.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 
 const routes: Routes = [
-  {path: 'inicio', component: InicioComponent},
+  {path: '', component: InicioComponent},
+  {path: '',
+    runGuardsAndResolvers: 'always',
+    children: [
   {path: 'datos', component: ListaComponent},
   {path: 'registro', component: RegisterComponent},
   {path: 'buscar', component: BuscadorComponent},
   {path: 'actualizador/:id', component: UpdaterComponent },
   {path: 'visual', component: VisualComponent}
-];
-
+]
+  }]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
