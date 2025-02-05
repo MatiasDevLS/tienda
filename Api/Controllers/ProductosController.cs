@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Api.Data;
 using Api.DTOs;
 using Api.Entities;
+using Api.Services;
 using API.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +15,10 @@ namespace Api.Controllers
     public class ProductosController : BaseApiController
     {
         private readonly DataContext _context;
-        public ProductosController(DataContext context)
+        private readonly FotoService _fotoService;
+        public ProductosController(DataContext context, FotoService fotoService)
         {
+            _fotoService = fotoService;
             _context = context;
         }
 
@@ -184,6 +187,31 @@ namespace Api.Controllers
             return Ok();
 
             
+        }
+
+        [HttpPost("add-foto")]
+        public async Task<ActionResult> AddFoto(string id, IFormFile file)
+        {
+            var result = await _fotoService.AddPhotoAsync(file);
+
+            var foto = new Foto
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                publicId = result.PublicId
+            };
+
+            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            var productoFoto = producto;
+
+            _context.Remove(producto);
+
+            producto.Fotos.Add(foto);
+
+            _context.Add(producto);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     } 
 }

@@ -41,6 +41,8 @@ namespace Api.Services
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
 
+            
+
             return uploadResult;
         }
 

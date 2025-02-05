@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 using Api.Data;
 
 namespace Api.Entities
 {
+    [Table ("Foto")]
     public class Foto
     {
         public int Id { get; set; }
