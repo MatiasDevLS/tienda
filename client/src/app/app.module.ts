@@ -15,6 +15,7 @@ import { UpdaterComponent } from './updater/updater.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { SharedModule } from './_modules/shared.module';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSpinnerModule.forRoot({
-      type: 'line-scale-party'
-    }),
-    DxButtonModule
+    DxButtonModule,
+    SharedModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}

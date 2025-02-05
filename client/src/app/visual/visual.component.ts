@@ -17,6 +17,7 @@ export class VisualComponent implements OnInit {
   constructor(private servicio: ProductoService) { }
 
   ngOnInit(): void {
+   
   }
 
 
