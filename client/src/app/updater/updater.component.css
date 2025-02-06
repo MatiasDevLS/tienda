@@ -14,3 +14,11 @@ form{
   text-transform: capitalize;
   text-shadow: 1px 1px 1px gray;
 }
+
+button {
+  margin-right: 1%;
+}
+
+#textDanger{
+  margin-top: 1%;
+}

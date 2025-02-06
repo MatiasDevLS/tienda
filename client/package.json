@@ -23,6 +23,7 @@
     "devextreme-angular": "23.2.11",
     "font-awesome": "^4.7.0",
     "jszip": "^3.10.1",
+    "ng2-file-upload": "^3.0.0",
     "ngx-bootstrap": "^9.0.0",
     "ngx-spinner": "^14.0.0",
     "rxjs": "~7.5.0",

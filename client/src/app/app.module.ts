@@ -13,9 +13,9 @@ import { InicioComponent } from './inicio/inicio.component';
 import { VisualComponent } from './visual/visual.component';
 import { UpdaterComponent } from './updater/updater.component';
 import { BuscadorComponent } from './buscador/buscador.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { SharedModule } from './_modules/shared.module';
+import { FotoUpdaterComponent } from './foto-updater/foto-updater.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { SharedModule } from './_modules/shared.module';
     InicioComponent,
     VisualComponent,
     UpdaterComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    FotoUpdaterComponent,
   ],
   imports: [
     BrowserModule,

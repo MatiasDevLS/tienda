@@ -67,3 +67,5 @@ C:\Users\PRACTICAS\Documents\tienda\Api\obj\Debug\net8.0\refint\Api.dll
 C:\Users\PRACTICAS\Documents\tienda\Api\obj\Debug\net8.0\Api.pdb
 C:\Users\PRACTICAS\Documents\tienda\Api\obj\Debug\net8.0\Api.genruntimeconfig.cache
 C:\Users\PRACTICAS\Documents\tienda\Api\obj\Debug\net8.0\ref\Api.dll
+C:\Users\PRACTICAS\Documents\tienda\Api\bin\Debug\net8.0\CloudinaryDotNet.dll
+C:\Users\PRACTICAS\Documents\tienda\Api\bin\Debug\net8.0\Newtonsoft.Json.dll

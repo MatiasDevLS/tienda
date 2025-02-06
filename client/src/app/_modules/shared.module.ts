@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { FileUploadModule } from "ng2-file-upload";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
@@ -9,9 +10,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
       NgxSpinnerModule.forRoot({
         type: 'ball-square-spin'
       }),
+      FileUploadModule 
     ],
     exports: [
-      NgxSpinnerModule
+      NgxSpinnerModule,
+      FileUploadModule 
     ]
   })
   export class SharedModule { }

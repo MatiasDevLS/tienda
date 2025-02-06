@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ProductoService } from '../Services/Producto.Service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Producto } from '../_models/Producto';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,11 +18,15 @@ export class RegisterComponent {
   boolElec: boolean = false;
   model: any = {}
   producto!: Producto
-  
+  id!: string
+  creado: boolean = false
+
+
   constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService) { }
 
   ngOnInit(): void {
     this.initializeForm()
+
   }
 
 
@@ -39,7 +45,6 @@ export class RegisterComponent {
         localizacion: ['',],
         descripcion: ['',Validators.required],
         marca: ['', Validators.required],
-        fotoUrl: ['', Validators.required],
         tipo: [''],
     });
   }
@@ -56,14 +61,19 @@ export class RegisterComponent {
 
   registrar() {
     this.producto = {...this.registerForm.value};
+    this.id = this.producto.id;
+    this.creado=true;
     this.productoService.register(this.producto).subscribe({
       next: () => {
-        this.router.navigateByUrl('datos')
+        this.router.navigateByUrl('actualizadorFoto/' + this.id)
       }
     })
+    
   }
 
-  }
+  
 
 
- 
+
+
+}

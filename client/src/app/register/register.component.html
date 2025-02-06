@@ -1,6 +1,12 @@
-<h2 id="letrero" class="text-center">Introduzca el producto</h2>
+<div class="text-center" [hidden]="!creado">
+    <p>Añadir foto?</p>
+    <button type="button"class="btn btn-success" [routerLink]="['../actualizadorFoto',this.id]">Si</button>
+    <button type="button" class="btn btn-danger" [routerLink]="['../datos']">No</button>
+</div>
 
-<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
+<h2 [hidden]="creado" id="letrero" class="text-center">Introduzca el producto</h2>
+
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="off" [hidden]="creado">
 
     <app-text-input [formControl]="$any(registerForm.controls['id'])"
         [label]="'Id'"></app-text-input>
@@ -24,8 +30,6 @@
             [label]="'Descripcion'"></app-text-input>
             <app-text-input [formControl]="$any(registerForm.controls['marca'])"
             [label]="'Marca'"></app-text-input>
-            <app-text-input [formControl]="$any(registerForm.controls['fotoUrl'])"
-            [label]="'FotoUrl'"></app-text-input>
             <p>Opcionales: </p>
         </div>
 
@@ -49,7 +53,7 @@
         </ul>
     </div>
     <div class="text-center"> 
-        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" (click)="registrar()" routerLink="../datos">Registrar</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" (click)="registrar()" >Registrar</button>
         <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
     </div>
 </form>

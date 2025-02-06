@@ -29,6 +29,11 @@ namespace Api.Data
             .HasOne(p => p.Producto)
             .WithMany(c => c.Informaticas)
             .HasForeignKey(p => p.ProductoId);
+
+            modelBuilder.Entity<Foto>()
+            .HasOne(p => p.Producto)
+            .WithMany(c => c.Fotos)
+            .HasForeignKey(p => p.ProductoId);
         }
     }
 }

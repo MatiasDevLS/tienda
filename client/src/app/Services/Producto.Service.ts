@@ -27,5 +27,9 @@ export class ProductoService {
       actualizar(model: Producto){
         return this.http.post(this.baseUrl + 'Productos/cambios', model)
       }
+
+      subirFoto(id: string, foto: File){
+        console.log(foto);
+      }
 }
 

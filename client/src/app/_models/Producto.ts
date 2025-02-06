@@ -1,5 +1,7 @@
+import { Foto } from "./Foto"
+
 export interface Producto {
-    id: Number,
+    id: string,
     nombre: String,
     precio: number,
     departamento: string
@@ -10,4 +12,5 @@ export interface Producto {
     localizacion: string
     valor: string
     fotoUrl: string
+    fotos: Foto[]
 }

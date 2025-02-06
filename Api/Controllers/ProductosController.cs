@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Api.Data;
 using Api.DTOs;
 using Api.Entities;
+using Api.Interfaces;
 using Api.Services;
 using API.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -15,8 +12,8 @@ namespace Api.Controllers
     public class ProductosController : BaseApiController
     {
         private readonly DataContext _context;
-        private readonly FotoService _fotoService;
-        public ProductosController(DataContext context, FotoService fotoService)
+        private readonly IFotoService _fotoService;
+        public ProductosController(DataContext context, IFotoService fotoService)
         {
             _fotoService = fotoService;
             _context = context;
@@ -33,7 +30,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductoDto>> GetProductoById(string id)
         {
-            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == id);
 
             if (producto.Informaticas.Count()>0){
                 var PdInformatica = producto.Informaticas[0];
@@ -43,11 +40,11 @@ namespace Api.Controllers
                     Id = PdInformatica.Id,
                     Nombre = PdInformatica.Nombre,
                     Precio = PdInformatica.Precio,
-                    FotoUrl = PdInformatica.FotoUrl,
                     Tipo = PdInformatica.Tipo,
                     Descripcion = PdInformatica.Descripcion,
                     Marca = PdInformatica.Marca,
-                    Departamento = "Informatica"
+                    Departamento = "Informatica",
+                    FotoUrl = producto.Fotos[0].Url
                     };
                 return  productoDto;
             }
@@ -60,11 +57,11 @@ namespace Api.Controllers
                         Nombre = PdElectrodomesticos.Nombre,
                         Precio = PdElectrodomesticos.Precio,
                         Consumo = PdElectrodomesticos.Consumo,
-                        FotoUrl = PdElectrodomesticos.FotoUrl,
                         Localizacion = PdElectrodomesticos.Localizacion,
                         Descripcion = PdElectrodomesticos.Descripcion,
                         Marca = PdElectrodomesticos.Marca,
-                        Departamento = "Electrodomesticos"
+                        Departamento = "Electrodomesticos",
+                        FotoUrl = producto.Fotos[0].Url
                     };
                 return  productoDto;
             }
@@ -83,6 +80,7 @@ namespace Api.Controllers
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
                     Departamento = "Informatica",
+                    Fotos= [],
                     Electrodomesticos = [],
                     Informaticas = []
                 };
@@ -94,7 +92,6 @@ namespace Api.Controllers
                     Precio = productoDto.Precio,
                     Tipo = productoDto.Tipo,
                     Descripcion = productoDto.Descripcion,
-                    FotoUrl = productoDto.FotoUrl,
                     Marca = productoDto.Marca,
                     ProductoId = productoDto.Id,
                     Producto = producto
@@ -115,6 +112,7 @@ namespace Api.Controllers
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
                     Departamento = "Electrodomestico",
+                    Fotos= [],
                     Electrodomesticos = [],
                     Informaticas = []
                 };
@@ -124,7 +122,6 @@ namespace Api.Controllers
                         Id = productoDto.Id,
                         Nombre = productoDto.Nombre,
                         Precio = productoDto.Precio,
-                        FotoUrl = productoDto.FotoUrl,
                         Consumo = productoDto.Consumo,
                         Localizacion = productoDto.Localizacion,
                         Descripcion = productoDto.Descripcion,
@@ -189,25 +186,33 @@ namespace Api.Controllers
             
         }
 
-        [HttpPost("add-foto")]
+        [HttpPost("add-foto/{id}")]
         public async Task<ActionResult> AddFoto(string id, IFormFile file)
         {
             var result = await _fotoService.AddPhotoAsync(file);
 
+             var producto = await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+
             var foto = new Foto
             {
+                
                 Url = result.SecureUrl.AbsoluteUri,
-                publicId = result.PublicId
+                publicId = result.PublicId,
+                ProductoId = producto.Id,
+                Producto = producto
             };
-
-            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            
             var productoFoto = producto;
 
-            _context.Remove(producto);
+            _context.Productos.Remove(producto);
 
-            producto.Fotos.Add(foto);
+            await _context.SaveChangesAsync();
+            
+            productoFoto.Fotos = [];
 
-            _context.Add(producto);
+            productoFoto.Fotos.Add(foto);
+
+            _context.Productos.Add(productoFoto);
 
             await _context.SaveChangesAsync();
 

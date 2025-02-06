@@ -51,8 +51,7 @@ export class UpdaterComponent {
         localizacion: [loc],
         descripcion: [des,Validators.required],
         marca: [mar, Validators.required],
-        fotoUrl: [fot, Validators.required],
-        tipo: [tip],
+        tipo: [tip]
     });
   }
 
