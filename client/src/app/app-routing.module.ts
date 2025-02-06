@@ -12,9 +12,9 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 const routes: Routes = [
   {path: '', component: InicioComponent},
   {path: 'datos', component: ListaComponent},
-  {path: 'registro', component: RegisterComponent, canDeactivate: [PreventUnsavedChangesGuard]},
+  {path: 'registro', component: RegisterComponent , canDeactivate: [PreventUnsavedChangesGuard]},
   {path: 'buscar', component: BuscadorComponent},
-  {path: 'actualizador/:id', component: UpdaterComponent, canDeactivate: [PreventUnsavedChangesGuard] },
+  {path: 'actualizador/:id', component: UpdaterComponent , canDeactivate: [PreventUnsavedChangesGuard] },
   {path: 'actualizadorFoto/:id', component: FotoUpdaterComponent },
   {path: 'visual', component: VisualComponent}
 ]
@@ -22,4 +22,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

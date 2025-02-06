@@ -37,9 +37,9 @@ namespace Api.Controllers
 
                 var productoDto = new ProductoDto
                     {
-                    Id = PdInformatica.Id,
-                    Nombre = PdInformatica.Nombre,
-                    Precio = PdInformatica.Precio,
+                    Id = producto.Id,
+                    Nombre = producto.Nombre,
+                    Precio = producto.Precio,
                     Tipo = PdInformatica.Tipo,
                     Descripcion = PdInformatica.Descripcion,
                     Marca = PdInformatica.Marca,
@@ -53,9 +53,9 @@ namespace Api.Controllers
 
                 var productoDto = new ProductoDto
                     {
-                        Id = PdElectrodomesticos.Id,
-                        Nombre = PdElectrodomesticos.Nombre,
-                        Precio = PdElectrodomesticos.Precio,
+                        Id = producto.Id,
+                        Nombre = producto.Nombre,
+                        Precio = producto.Precio,
                         Consumo = PdElectrodomesticos.Consumo,
                         Localizacion = PdElectrodomesticos.Localizacion,
                         Descripcion = PdElectrodomesticos.Descripcion,
@@ -155,9 +155,9 @@ namespace Api.Controllers
         [HttpPost("cambios")]
         public async Task<ActionResult> UpdateUser( ProductoDto productoDto)
         {
-            var productoActualizar = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id);
+            var productoActualizar = await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id);
 
-            _context.Productos.Remove(await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id));
+            _context.Productos.Remove(await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id));
 
             await _context.SaveChangesAsync();
 
@@ -166,14 +166,12 @@ namespace Api.Controllers
             if (productoDto.Departamento == "Electrodomesticos"){
                 productoActualizar.Electrodomesticos[0].Descripcion = productoDto.Descripcion;
                 productoActualizar.Electrodomesticos[0].Marca = productoDto.Marca;
-                productoActualizar.Electrodomesticos[0].FotoUrl = productoDto.FotoUrl;
                 productoActualizar.Electrodomesticos[0].Consumo = productoDto.Consumo;
                 productoActualizar.Electrodomesticos[0].Localizacion = productoDto.Localizacion;
             }
             else{
                 productoActualizar.Informaticas[0].Descripcion = productoDto.Descripcion;
                 productoActualizar.Informaticas[0].Marca = productoDto.Marca;
-                productoActualizar.Informaticas[0].FotoUrl = productoDto.FotoUrl;
                 productoActualizar.Informaticas[0].Tipo = productoDto.Tipo;
             }
             

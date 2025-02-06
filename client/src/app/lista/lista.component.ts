@@ -21,6 +21,8 @@ export class ListaComponent{
   jsonDataSource: CustomStore;
   showNavButtons = true;
 
+
+
   selectedItemKeys: string[] = [];
 
   constructor(private http: HttpClient, private servicio: ProductoService) {
@@ -40,6 +42,27 @@ export class ListaComponent{
         }
     });
 }
+
+customizeColumns = (columns: any[]) => {
+  columns.find(c => c.dataField === "precio").cellTemplate = this.precioCellTemplate;
+}
+
+formatCurrency(amount: number): string {
+
+  const [integerPart, decimalPart] = amount.toFixed(2).split('.'); 
+
+  const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
+
+  return `€${formattedIntegerPart},${decimalPart}`; 
+}
+
+precioCellTemplate = (container: any, options: any)=> {
+  
+  const formattedValue = this.formatCurrency(options.data.precio);
+  container.textContent = formattedValue;
+}
+
+
 
   
   applyFilterTypes = [{
@@ -93,12 +116,15 @@ export class ListaComponent{
   valor: string ="";
 
   eliminar(){
-    this.servicio.eliminar(this.valor).subscribe({
-      next: () => this.dataGrid.instance.refresh()
-    });
-    ;
+    if (confirm("Va a eliminar un producto?"))
+        if (confirm('Confirma eliminar el producto con id: '+ this.valor)){
+          this.servicio.eliminar(this.valor).subscribe({
+            next: () => this.dataGrid.instance.refresh()
+          });
+      };
+  }
   }
 
 
-}
+
 
