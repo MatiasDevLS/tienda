@@ -1,5 +1,5 @@
-<div class="text-center" [hidden]="!creado">
-    <p>Añadir foto?</p>
+<div id="rutas" class="container text-center" [hidden]="!creado">
+    <h2>Añadir foto?</h2>
     <button type="button"class="btn btn-success" [routerLink]="['../actualizadorFoto',this.id]">Si</button>
     <button type="button" class="btn btn-danger" [routerLink]="['../datos']">No</button>
 </div>

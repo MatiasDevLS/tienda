@@ -39,7 +39,7 @@
         </ul>
     </div>
     <div class="text-center"> 
-        <button [disabled]="!registerForm.valid" class="btn btn-warning me-2" type="submit" (click)="registrar()" routerLink="../datos">Actualizar</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-warning me-2" type="submit" (click)="registrar()">Actualizar</button>
         <button [disabled]='editForm.dirty' type="button" class="btn btn-dark" [routerLink]="['../../actualizadorFoto',this.id]">Actualizar foto</button>
         <p id="textDanger" class="text text-danger">* Actualizar la foto antes de actualizar, hará que no se guarden los cambios. Antes de actulizar la foto, actualiza los datos.</p>
     </div>

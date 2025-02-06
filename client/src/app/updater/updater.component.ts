@@ -74,6 +74,7 @@ export class UpdaterComponent {
     this.productoService.actualizar(this.producto).subscribe({
       next: () => {
         this.router.navigateByUrl('../datos')
+        this.recargarPag()
       }
     })
   }
@@ -85,6 +86,10 @@ export class UpdaterComponent {
 
   noCambiarFoto(){
     this.actualizarFoto=false
+  }
+
+  recargarPag(){
+    window.location.reload()
   }
 
 }

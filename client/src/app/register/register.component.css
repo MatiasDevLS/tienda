@@ -14,3 +14,25 @@ form{
   text-transform: capitalize;
   text-shadow: 1px 1px 1px gray;
 }
+
+#rutas{
+  border: 5px solid black;
+  margin-top: 10%;
+  width: 20%;
+  height: 250px;
+  box-shadow: 2px 2px 2px gray;
+}
+
+#rutas button{
+  margin-right: 2% ;
+  margin-top: 9%;
+  width: 25%;
+  height: 20%;
+  box-shadow: 1px 1px 1px gray;
+}
+
+#rutas h2 {
+  margin-top:10%;
+  text-transform: capitalize;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
