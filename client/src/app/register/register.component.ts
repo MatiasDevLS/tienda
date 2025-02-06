@@ -44,7 +44,7 @@ export class RegisterComponent {
    initializeForm() {
     this.registerForm = this.fb.group({
       departamento: ['',Validators.required],
-      id: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+      id: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8),Validators.pattern('^[0-9]{7}[A-Z]$')]],
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
         consumo: [''],

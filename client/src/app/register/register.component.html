@@ -12,8 +12,7 @@
         [label]="'Id'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['nombre'])"
         [label]="'Nombre'"></app-text-input>
-    <app-text-input [formControl]="$any(registerForm.controls['precio'])"
-        [label]="'Precio'"></app-text-input>
+    <input type="number" [formControl]="$any(registerForm.controls['precio'])" placeholder="Precio" class="form-control">
 
         <div class="mb-3">
             <label style="margin-right:10px;">Departamento: </label>
