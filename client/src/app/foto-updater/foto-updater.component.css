@@ -18,3 +18,10 @@
     max-width: 45%;
     max-height: 55%;
 }
+
+#letrero{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-transform: capitalize;
+    text-shadow: 1px 1px 1px gray;
+  }

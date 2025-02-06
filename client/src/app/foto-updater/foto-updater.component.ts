@@ -29,15 +29,6 @@ export class FotoUpdaterComponent implements OnInit {
   }
 
 
-  // deletePhoto(photoId: number){
-  //   this.memberService.deletePhoto(photoId).subscribe({
-  //     next: _ => {
-  //       if (this.member) {
-  //         this.member.photos = this.member.photos.filter(x => x.id !== photoId)
-  //       }
-  //     }
-  //   })
-  // }
 
   initializeUploader() {
     this.uploader = new FileUploader({
@@ -57,8 +48,27 @@ export class FotoUpdaterComponent implements OnInit {
     }
   }
 
+  confirmar(){
+    if (confirm("Desea subir esta foto?")){
+      this.uploader?.uploadAll()
+    }
+  }
 
+  confirmarUno(item: any){
+    if (confirm("Desea subir esta foto?")) item.upload()
+  }
+
+  noConfirmar(){
+    if (confirm("Desea eliminar esta foto?")){
+      this.uploader?.clearQueue()
+    }
+  }
+
+  noConfirmarUno(item: any){
+    if (confirm("Desea eliminar esta foto?")) item.remove()
+  }
+}
 
 
   
-}
+

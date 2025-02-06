@@ -6,7 +6,7 @@
 
 <h2 [hidden]="creado" id="letrero" class="text-center">Introduzca el producto</h2>
 
-<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="off" [hidden]="creado">
+<form #editForm="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="off" [hidden]="creado">
 
     <app-text-input [formControl]="$any(registerForm.controls['id'])"
         [label]="'Id'"></app-text-input>
@@ -53,8 +53,7 @@
         </ul>
     </div>
     <div class="text-center"> 
-        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" (click)="registrar()" >Registrar</button>
-        <button class="btn btn-default" type="button" (click)="cancel()">Cancelar</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" >Registrar</button>
     </div>
 </form>
 

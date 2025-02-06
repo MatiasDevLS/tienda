@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from '../Services/Producto.Service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Producto } from '../_models/Producto';
 @Component({
   selector: 'app-updater',
@@ -9,6 +9,12 @@ import { Producto } from '../_models/Producto';
   styleUrls: ['./updater.component.css']
 })
 export class UpdaterComponent {
+  @ViewChild('editForm') editForm: NgForm | undefined;
+  @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
+    if (this.editForm?.dirty) {
+      $event.returnValue = true;
+    }
+  }
   @Output() cancelRegister = new EventEmitter();
   registerForm: FormGroup = new FormGroup({});
   registerFormBuscar: FormGroup = new FormGroup({});
@@ -19,6 +25,7 @@ export class UpdaterComponent {
   producto!: Producto
   productoEncontrado!: Producto
   id!: string
+  actualizarFoto: boolean = true
   
   constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService, private activatedRoute: ActivatedRoute) { }
 
@@ -66,12 +73,22 @@ export class UpdaterComponent {
   }
 
   registrar() {
+    if (confirm("Confirmar cambios")){
     this.producto = {...this.registerForm.value};
     this.productoService.actualizar(this.producto).subscribe({
       next: () => {
         this.router.navigateByUrl('datos')
       }
     })
+  }
+  }
+
+  cambiarFoto(){
+    this.actualizarFoto=true
+  }
+
+  noCambiarFoto(){
+    this.actualizarFoto=false
   }
 
 }

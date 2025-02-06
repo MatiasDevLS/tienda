@@ -2,10 +2,10 @@
 <h3 id="letrero" class="text-center">Actualizar el producto con id: {{id}}</h3>
 
 
-<form  [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
+<form   #editForm="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid" autocomplete="off">
     <p>Nombre:</p>
-    <app-text-input [formControl]="$any(registerForm.controls['nombre'])"
-        [label]="'Nombre'"></app-text-input>
+    <app-text-input  [formControl]="$any(registerForm.controls['nombre'])"
+        [label]="'Nombre'" ></app-text-input>
     <p>Precio:</p>
     <app-text-input [formControl]="$any(registerForm.controls['precio'])"
         [label]="'Precio'"></app-text-input>
@@ -22,10 +22,10 @@
             [label]="'Consumo'"></app-text-input>
             <p>Localización:</p>
             <app-text-input [formControl]="$any(registerForm.controls['localizacion'])"
-            [label]="'Localizacion'"></app-text-input>
+            [label]="'Localizacion'" ></app-text-input>
         </div>
 
-        <div class="mb-3" *ngIf="boolInfor">
+        <div class="mb-3" *ngIf="boolInfor" >
             <p>Tipo:</p>
             <app-text-input [formControl]="$any(registerForm.controls['tipo'])"
             [label]="'Tipo'"></app-text-input>
@@ -40,8 +40,7 @@
     </div>
     <div class="text-center"> 
         <button [disabled]="!registerForm.valid" class="btn btn-warning me-2" type="submit" (click)="registrar()" routerLink="../datos">Actualizar</button>
-        <button class="btn btn-danger" type="button" (click)="cancel()">Cancelar</button>
-        <button type="button" class="btn btn-dark" [routerLink]="['../../actualizadorFoto',this.id]">Actualizar foto</button>
+        <button [disabled]='editForm.dirty' type="button" class="btn btn-dark" [routerLink]="['../../actualizadorFoto',this.id]">Actualizar foto</button>
         <p id="textDanger" class="text text-danger">* Actualizar la foto antes de actualizar, hará que no se guarden los cambios. Antes de actulizar la foto, actualiza los datos.</p>
     </div>
 </form>

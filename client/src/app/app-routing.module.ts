@@ -7,13 +7,14 @@ import { VisualComponent } from './visual/visual.component';
 import { UpdaterComponent } from './updater/updater.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { FotoUpdaterComponent } from './foto-updater/foto-updater.component';
+import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
   {path: 'datos', component: ListaComponent},
-  {path: 'registro', component: RegisterComponent},
+  {path: 'registro', component: RegisterComponent, canDeactivate: [PreventUnsavedChangesGuard]},
   {path: 'buscar', component: BuscadorComponent},
-  {path: 'actualizador/:id', component: UpdaterComponent },
+  {path: 'actualizador/:id', component: UpdaterComponent, canDeactivate: [PreventUnsavedChangesGuard] },
   {path: 'actualizadorFoto/:id', component: FotoUpdaterComponent },
   {path: 'visual', component: VisualComponent}
 ]

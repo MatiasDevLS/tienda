@@ -27,7 +27,7 @@ export class TextInputComponent implements ControlValueAccessor {
   get control(): FormControl{
     return this.ngControl.control as FormControl
   }
-
+  
   
 
 }

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductoService } from '../Services/Producto.Service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Producto } from '../_models/Producto';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
@@ -11,6 +11,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+   @ViewChild('editForm') editForm: NgForm | undefined;
+    @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
+      if (this.editForm?.dirty) {
+        $event.returnValue = true;
+      }
+    }
   @Output() cancelRegister = new EventEmitter();
   registerForm: FormGroup = new FormGroup({});
   validationErrors: string[] | undefined;
@@ -60,6 +66,7 @@ export class RegisterComponent {
   }
 
   registrar() {
+    if (confirm("Confirmar la creación del producto")){
     this.producto = {...this.registerForm.value};
     this.id = this.producto.id;
     this.creado=true;
@@ -68,6 +75,7 @@ export class RegisterComponent {
         this.router.navigateByUrl('actualizadorFoto/' + this.id)
       }
     })
+  }
     
   }
 

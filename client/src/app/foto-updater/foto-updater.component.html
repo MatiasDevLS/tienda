@@ -5,7 +5,9 @@
  
     html, body { height: 100%; }
 </style>
- 
+ <div class="text-center">
+    <h2 id="letrero">Cambiando imagen del producto: {{this.id}}</h2>
+ </div>
 <div class="container" id="formulario">
  
  
@@ -63,11 +65,11 @@
                     </td>
                     <td nowrap>
                         <button type="button" class="btn btn-success btn-xs"
-                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                (click)="confirmarUno(item)" [disabled]="item.isReady || item.isUploading || item.isSuccess">
                             <span class="glyphicon glyphicon-upload"></span> Actualizar
                         </button>
                         <button type="button" class="btn btn-danger btn-xs"
-                                (click)="item.remove()">
+                                (click)="noConfirmarUno(item)">
                             <span class="glyphicon glyphicon-trash"></span> Eliminar
                         </button>
                     </td>
@@ -83,11 +85,11 @@
                     </div>
                 </div>
                 <button type="button" class="btn btn-success btn-s"
-                        (click)="uploader?.uploadAll()" [disabled]="!uploader?.getNotUploadedItems()?.length">
+                        (click)="confirmar()" [disabled]="!uploader?.getNotUploadedItems()?.length">
                     <span class="glyphicon glyphicon-upload"></span> Actualizar
                 </button>
                 <button type="button" class="btn btn-danger btn-s"
-                        (click)="uploader?.clearQueue()" [disabled]="!uploader?.queue?.length">
+                        (click)="noConfirmar()" [disabled]="!uploader?.queue?.length">
                     <span class="glyphicon glyphicon-trash"></span> Eliminar
                 </button>
             </div>
