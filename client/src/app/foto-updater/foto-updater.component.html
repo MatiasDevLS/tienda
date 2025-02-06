@@ -80,12 +80,12 @@
             <div>
                 <div>
                     Progreso:
-                    <div class="progress" style="">
+                    <div class="progress">
                         <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader?.progress + '%' }"></div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-success btn-s"
-                        (click)="confirmar()" [disabled]="!uploader?.getNotUploadedItems()?.length">
+                        (click)="confirmar()" [disabled]="!uploader?.getNotUploadedItems()?.length" routerLink="../../datos">
                     <span class="glyphicon glyphicon-upload"></span> Actualizar
                 </button>
                 <button type="button" class="btn btn-danger btn-s"
