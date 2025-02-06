@@ -8,7 +8,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     imports: [
       CommonModule,
       NgxSpinnerModule.forRoot({
-        type: 'ball-square-spin'
+        type: 'fire'
       }),
       FileUploadModule 
     ],
