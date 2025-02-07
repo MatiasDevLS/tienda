@@ -12,7 +12,7 @@ export class ProductoService {
     constructor(private http: HttpClient) {}
 
     register(model: Producto){
-        return this.http.post<Producto>(this.baseUrl + 'Productos/registro', model)
+        return this.http.post(this.baseUrl + 'Productos/registro', model)
       }
     
 
@@ -30,10 +30,6 @@ export class ProductoService {
 
       subirFoto(id: string, foto: File){
         console.log(foto);
-      }
-
-      comprobarId() {
-       return this.http.get(this.baseUrl + "Productos/comprobarId")
       }
 
 

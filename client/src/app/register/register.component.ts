@@ -25,7 +25,7 @@ export class RegisterComponent {
   model: any = {}
   producto!: Producto
   creado: boolean = false
-  id!: string
+  id: string | undefined
 
 
   constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService) { }
@@ -69,9 +69,8 @@ export class RegisterComponent {
     this.producto = {...this.registerForm.value};
     this.creado=true;
     this.productoService.register(this.producto).subscribe({
-      next: (valor:any) => {
-        this.id=valor
-        this.router.navigateByUrl('actualizadorFoto/' + valor)
+      next: (valor: any) =>{
+        this.id=valor.id;
       }
     })
   }

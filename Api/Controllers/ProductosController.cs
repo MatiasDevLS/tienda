@@ -84,7 +84,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("registro")]
-        public async Task<ActionResult<string>> Registro(ProductoDto productoDto)
+        public async Task<ActionResult<ProductoDto>> Registro(ProductoDto productoDto)
         {
             Guid newGuid = Guid.NewGuid();
             string guidString = newGuid.ToString();
@@ -127,7 +127,7 @@ namespace Api.Controllers
                 _context.Productos.Add(producto);
                 await _context.SaveChangesAsync();
 
-                return producto.Id;
+                return  productoDto;
             }
             else{
 
@@ -160,7 +160,7 @@ namespace Api.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return producto.Id;
+                return productoDto;
             }
         }
 

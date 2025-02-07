@@ -1,4 +1,5 @@
-<div id="rutas" class="container text-center" [hidden]="!creado">
+<div [hidden]="!creado" id="rutas" class="container text-center">
+    <p class="text-secondary">Se ha creado con éxito el producto con la id: {{this.id}}</p>
     <h2>Añadir foto?</h2>
     <button type="button"class="btn btn-success" [routerLink]="['../actualizadorFoto',this.id]">Si</button>
     <button type="button" class="btn btn-danger" [routerLink]="['../datos']">No</button>
