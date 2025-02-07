@@ -10,7 +10,7 @@ namespace Api.Data
         [Key]
         public required string Id { get; set; }
         public required string Nombre { get; set; }
-        public int Precio { get; set; }
+        public float Precio { get; set; }
         public string Departamento { get; set; }
 
         public List<Foto> Fotos { get;set;}

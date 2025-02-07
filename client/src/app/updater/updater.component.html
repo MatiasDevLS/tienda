@@ -7,8 +7,7 @@
     <app-text-input  [formControl]="$any(registerForm.controls['nombre'])"
         [label]="'Nombre'" ></app-text-input>
     <p>Precio:</p>
-    <app-text-input [formControl]="$any(registerForm.controls['precio'])"
-        [label]="'Precio'"></app-text-input>
+    <input type="number" [formControl]="$any(registerForm.controls['precio'])" placeholder="Precio" class="form-control">
     <p>Descripción:</p>
     <app-text-input [formControl]="$any(registerForm.controls['descripcion'])"
         [label]="'Descripcion'"></app-text-input>

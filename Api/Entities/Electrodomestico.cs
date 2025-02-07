@@ -10,7 +10,7 @@ namespace Api.Entities
         [Key]
         public  string Id { get; set; }
         public  string Nombre { get; set; }
-        public int Precio { get; set; }
+        public float Precio { get; set; }
         public string Consumo { get; set; }
         public string Localizacion { get; set; }
         public string Descripcion { get; set; }

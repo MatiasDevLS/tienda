@@ -1,23 +1,4 @@
 
-
-#letrero{
-    margin-top: 8%;
-    background-color: black;
-    height: 450px;
-    width: 100%;
-    box-shadow: 2px 2px 2px gray;
-}
-
-.textoLetrero{
-    color: white;
-    font-size: 400%;
-    text-transform: uppercase;
-    text-shadow:  3px 3px 3dvb white;
-    font-family: "Archivo Black", "Archivo", sans-serif;
-}
-
-
-
 #text3d {
     margin-top: 5%;
     font-size: 16em;

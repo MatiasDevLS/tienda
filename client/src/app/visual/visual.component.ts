@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../_models/Producto';
 import { ProductoService } from '../Services/Producto.Service';
+import localeEs from '@angular/common/locales/es';
+import { formatCurrency, registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-visual',
@@ -14,10 +16,17 @@ export class VisualComponent implements OnInit {
   Creado: boolean = false;
   parametros: any | [ ];
   valor: string ="";
+  formattedPrice: string = '';
+  PRECIO!: string
+
   constructor(private servicio: ProductoService) { }
 
   ngOnInit(): void {
-   
+    registerLocaleData(localeEs, 'es');
+  }
+
+  FormatPrice(price: number): string {
+    return formatCurrency(price, 'es-ES', 'EUR', 'symbol', '1.2-2');
   }
 
 
@@ -26,6 +35,7 @@ export class VisualComponent implements OnInit {
       next: (valor: Producto) =>{
         this.Creado=true
         this.producto=valor
+        this.PRECIO=this.FormatPrice(this.producto.precio)
         console.log(this.producto)
         if (this.producto.departamento == "Electrodomesticos"){
           this.BolInformatica = false;
