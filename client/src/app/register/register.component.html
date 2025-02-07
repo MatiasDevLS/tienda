@@ -8,8 +8,6 @@
 
 <form #editForm="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="off" [hidden]="creado">
 
-    <app-text-input [formControl]="$any(registerForm.controls['id'])"
-        [label]="'Id'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['nombre'])"
         [label]="'Nombre'"></app-text-input>
     <input type="number" [formControl]="$any(registerForm.controls['precio'])" placeholder="Precio" class="form-control">

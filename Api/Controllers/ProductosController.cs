@@ -31,7 +31,9 @@ namespace Api.Controllers
         public async Task<ActionResult<ProductoDto>> GetProductoById(string id)
         {
             var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == id);
-
+            if (producto.Fotos.Count()==0){
+                producto.Fotos.Add(new Foto());
+            }
             if (producto.Informaticas.Count()>0){
                 var PdInformatica = producto.Informaticas[0];
 
@@ -68,9 +70,32 @@ namespace Api.Controllers
 
         }
 
-        [HttpPost("registro")]
-        public async Task<ActionResult<Producto>> Registro(ProductoDto productoDto)
+        [HttpGet("comprobarId")]
+        public async Task<List<string>> GetComprobarId()
         {
+            var productos = await _context.Productos.ToListAsync();
+            List<string> lista= new ();
+            foreach (var item in productos)
+            {
+                lista.Add(item.Id);
+            }
+
+            return lista;
+        }
+
+        [HttpPost("registro")]
+        public async Task<ActionResult<string>> Registro(ProductoDto productoDto)
+        {
+            Guid newGuid = Guid.NewGuid();
+            string guidString = newGuid.ToString();
+
+            while (await _context.Productos.FindAsync(await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == guidString))!=null)
+            {
+                newGuid = Guid.NewGuid();
+                guidString = newGuid.ToString();
+            }
+            productoDto.Id= guidString;
+            
             if (productoDto.Departamento == "Infor")
             {
 
@@ -102,7 +127,7 @@ namespace Api.Controllers
                 _context.Productos.Add(producto);
                 await _context.SaveChangesAsync();
 
-                return producto;
+                return producto.Id;
             }
             else{
 
@@ -135,7 +160,7 @@ namespace Api.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return producto;
+                return producto.Id;
             }
         }
 

@@ -31,5 +31,11 @@ export class ProductoService {
       subirFoto(id: string, foto: File){
         console.log(foto);
       }
+
+      comprobarId() {
+       return this.http.get(this.baseUrl + "Productos/comprobarId")
+      }
+
+
 }
 

@@ -7,7 +7,7 @@ import { RegisterComponent } from '../register/register.component';
 @Injectable({
   providedIn: 'root'
 })
-export class PreventUnsavedChangesGuard implements CanDeactivate<RegisterComponent> {
+export class PreventUnsavedChangesGuardRegister implements CanDeactivate<RegisterComponent> {
   canDeactivate(register: RegisterComponent): boolean {
     if (register.editForm?.dirty) {
       return confirm("Estas seguro que quieres continuar? Todos los guardos sin cambiar serán eliminados");

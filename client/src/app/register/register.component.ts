@@ -24,8 +24,8 @@ export class RegisterComponent {
   boolElec: boolean = false;
   model: any = {}
   producto!: Producto
-  id!: string
   creado: boolean = false
+  id!: string
 
 
   constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService) { }
@@ -44,7 +44,6 @@ export class RegisterComponent {
    initializeForm() {
     this.registerForm = this.fb.group({
       departamento: ['',Validators.required],
-      id: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8),Validators.pattern('^[0-9]{7}[A-Z]$')]],
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
         consumo: [''],
@@ -68,20 +67,22 @@ export class RegisterComponent {
   registrar() {
     if (confirm("Confirmar la creación del producto")){
     this.producto = {...this.registerForm.value};
-    this.id = this.producto.id;
     this.creado=true;
     this.productoService.register(this.producto).subscribe({
-      next: () => {
-        this.router.navigateByUrl('actualizadorFoto/' + this.id)
+      next: (valor:any) => {
+        this.id=valor
+        this.router.navigateByUrl('actualizadorFoto/' + valor)
       }
     })
   }
-    
-  }
+
+
+}
+
+}
 
   
 
 
 
 
-}

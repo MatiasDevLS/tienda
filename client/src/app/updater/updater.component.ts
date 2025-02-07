@@ -10,6 +10,11 @@ import { Producto } from '../_models/Producto';
 })
 export class UpdaterComponent {
   @ViewChild('editForm') editForm: NgForm | undefined;
+  @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
+    if (this.editForm?.dirty) {
+      $event.returnValue = true;
+    }
+  }
   @Output() cancelRegister = new EventEmitter();
   registerForm: FormGroup = new FormGroup({});
   registerFormBuscar: FormGroup = new FormGroup({});
