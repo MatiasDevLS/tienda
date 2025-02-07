@@ -9,6 +9,7 @@ import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { ProductoService } from '../Services/Producto.Service';
+import { ToastrService } from 'ngx-toastr';
 
  
 @Component({
@@ -25,7 +26,7 @@ export class ListaComponent{
 
   selectedItemKeys: string[] = [];
 
-  constructor(private http: HttpClient, private servicio: ProductoService) {
+  constructor(private http: HttpClient, private servicio: ProductoService, private toastr: ToastrService) {
     this.jsonDataSource = new CustomStore({
         key: 'id',
         loadMode: 'raw',
@@ -119,7 +120,8 @@ precioCellTemplate = (container: any, options: any)=> {
     if (confirm("Va a eliminar un producto?"))
         if (confirm('Confirma eliminar el producto con id: '+ this.valor)){
           this.servicio.eliminar(this.valor).subscribe({
-            next: () => this.dataGrid.instance.refresh()
+            next: () => this.dataGrid.instance.refresh(),
+            error: error => this.toastr.error("No se ha encontrando el producto")
           });
       };
   }
