@@ -28,7 +28,10 @@
             </td>
             <td>
               Quitar en venta
-              <input type="number" class="form-control">
+              <form #registerQuitarVentaForm="ngForm" (ngSubmit)="quitarVenta()"> 
+                <input type="number"  name="cantidadQuitarVenta" class="form-control" [(ngModel)]="cantidadQuitarVenta">
+                <button class="btn btn-dark" type="submit" >Quitar en venta</button>
+              </form>
             </td>
           </tr>
           <tr>

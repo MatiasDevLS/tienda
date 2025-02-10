@@ -294,10 +294,26 @@ namespace Api.Controllers
         {
             var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
 
-            var productoNoVenta = producto.Stocks.FindAll(x => x.EnVenta==false);
+            var productoNoVenta = producto.Stocks.FindAll(x => x.EnVenta==false && x.Vendido==false );
 
             for (int i=0; i<cantidad; i++){
                 productoNoVenta[i].EnVenta=true;
+            }
+
+            await _context.SaveChangesAsync();
+
+            return  producto.Stocks.Count();
+        }
+
+        [HttpPut("ventas/quitar/{id}/{cantidad}")]
+        public async Task<ActionResult<int>> quitarEnVenta(string id,int cantidad)
+        {
+            var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+
+            var productoNoVenta = producto.Stocks.FindAll(x => x.EnVenta==true && x.Vendido==false);
+
+            for (int i=0; i<cantidad; i++){
+                productoNoVenta[i].EnVenta=false;
             }
 
             await _context.SaveChangesAsync();

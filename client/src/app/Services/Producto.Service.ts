@@ -37,6 +37,11 @@ export class ProductoService {
         return this.http.put(this.baseUrl + 'Productos/ventas/'+ id + '/' + cantidad,"")
       }
 
+      quitarVenta(id: string, cantidad : number)
+      {
+        return this.http.put(this.baseUrl + 'Productos/ventas/quitar/'+ id + '/' + cantidad,"")
+      }
+
 
 
 

@@ -15,6 +15,7 @@ export class VentasTabsComponent implements OnInit {
   productoEncontrado!: Producto
   cantidad!:number
   cantidadVenta!:number
+  cantidadQuitarVenta!: number
 
     constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService, private activatedRoute: ActivatedRoute) { }
 
@@ -38,5 +39,12 @@ export class VentasTabsComponent implements OnInit {
     this.productoService.ponerVenta(this.id, this.cantidadVenta).subscribe();
     window.location.reload()
   }
+
+  quitarVenta()
+  {
+    this.productoService.quitarVenta(this.id, this.cantidadQuitarVenta).subscribe();
+    window.location.reload()
+  }
+
 
 }
