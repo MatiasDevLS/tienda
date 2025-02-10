@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Entities;
 
 namespace Api.DTOs
 {
@@ -17,5 +18,9 @@ namespace Api.DTOs
         public string Consumo { get; set; }
         public string Localizacion { get; set; }
         public string FotoUrl { get; set; }
+        public int Stocks { get;set;}
+        public int CantidadVendidos { get; set; }
+        public int CantidadVenta { get; set; }
+        public int Ganancias { get; set; }
     }
 }

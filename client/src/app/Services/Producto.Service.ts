@@ -28,9 +28,11 @@ export class ProductoService {
         return this.http.post(this.baseUrl + 'Productos/cambios', model)
       }
 
-      subirFoto(id: string, foto: File){
-        console.log(foto);
+      añadirStock(id: string, cantidad : number){
+        return this.http.post(this.baseUrl + 'Productos/ventas/'+ id + '/' + cantidad,"")
       }
+
+
 
 
 }

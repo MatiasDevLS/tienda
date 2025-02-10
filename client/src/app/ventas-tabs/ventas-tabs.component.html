@@ -3,10 +3,10 @@
     <tabset>
       <tab heading="Ganancias" id="tab1">
         <div>
-          <p>Total de productos vendidos: </p>
+          <p>Total de productos vendidos: {{productoEncontrado.cantidadVendidos}} </p>
         </div>
         <div>
-          <p>Total de ganancias: </p>
+          <p>Total de ganancias: {{productoEncontrado.ganancias}}</p>
         </div>
       </tab>
       <tab heading="Administrar">
@@ -14,7 +14,11 @@
           <tr>
             <td>
               Añadir stock
-              <input type="number" class="form-control">
+              <form #registerForm="ngForm" (ngSubmit)="addStock()"> 
+                <input type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidad">
+                <button class="btn btn-dark" type="submit" >Aumentar</button>
+              </form>
+              
             </td>
             <td>
               Poner en venta
@@ -28,10 +32,10 @@
           <tr>
             <td>
               <div>
-                Stock total:
+                Stock total: {{productoEncontrado.stocks}}
               </div>
               <div>
-                Productos en venta:
+                Productos en venta: {{productoEncontrado.cantidadVenta}}
               </div>
             </td>
           </tr>

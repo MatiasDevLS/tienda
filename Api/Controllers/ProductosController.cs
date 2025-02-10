@@ -46,7 +46,11 @@ namespace Api.Controllers
                     Descripcion = PdInformatica.Descripcion,
                     Marca = PdInformatica.Marca,
                     Departamento = "Informatica",
-                    FotoUrl = producto.Fotos[0].Url
+                    FotoUrl = producto.Fotos[0].Url,
+                    Stocks = producto.Stocks.Count(),
+                    CantidadVendidos = producto.Stocks.FindAll(x => x.Vendido==true).Count(),
+                    CantidadVenta = producto.Stocks.FindAll(x => x.EnVenta==true).Count(),
+                    Ganancias = producto.Ganancias
                     };
                 return  productoDto;
             }
@@ -63,7 +67,11 @@ namespace Api.Controllers
                         Descripcion = PdElectrodomesticos.Descripcion,
                         Marca = PdElectrodomesticos.Marca,
                         Departamento = "Electrodomesticos",
-                        FotoUrl = producto.Fotos[0].Url
+                        FotoUrl = producto.Fotos[0].Url,
+                        Stocks = producto.Stocks.Count(),
+                        CantidadVendidos = producto.Stocks.FindAll(x => x.Vendido==true).Count(),
+                        CantidadVenta = producto.Stocks.FindAll(x => x.EnVenta==true).Count(),
+                        Ganancias = producto.Ganancias
                     };
                 return  productoDto;
             }
@@ -105,6 +113,7 @@ namespace Api.Controllers
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
                     Departamento = "Informatica",
+                    Ganancias = 0,
                     Fotos= [],
                     Electrodomesticos = [],
                     Informaticas = [],
@@ -137,6 +146,7 @@ namespace Api.Controllers
                     Id = productoDto.Id,
                     Nombre = productoDto.Nombre,
                     Precio = productoDto.Precio,
+                     Ganancias = 0,
                     Departamento = "Electrodomestico",
                     Fotos= [],
                     Electrodomesticos = [],
@@ -254,7 +264,7 @@ namespace Api.Controllers
                     Precio = producto.Precio,
                     Vendido = false,
                     EnVenta = false,
-                    Contador  = producto.Id+"1",
+                    Contador  = producto.Id+"0",
                     ProductoId = producto.Id,
                     Producto = producto
                 };
@@ -278,7 +288,21 @@ namespace Api.Controllers
 
             return  producto.Stocks.Count();
         }
+
+        [HttpPut("ventas/{id}/{cantidad}")]
+        public async Task<ActionResult<int>> ponerEnVenta(string id,int cantidad)
+        {
+            var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+
+            
+
+            await _context.SaveChangesAsync();
+
+            return  producto.Stocks.Count();
+        }
+
     } 
+
 
 
 }

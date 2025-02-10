@@ -1,4 +1,5 @@
 import { Foto } from "./Foto"
+import { Stock } from "./Stock"
 
 export interface Producto {
     id: string,
@@ -13,4 +14,8 @@ export interface Producto {
     valor: string
     fotoUrl: string
     fotos: Foto[]
+    stocks: number
+    cantidadVendidos : number
+    cantidadVenta : number
+    ganancias: number
 }
