@@ -145,7 +145,7 @@ precioCellTemplate = (container: any, options: any)=> {
                 positionClass: 'toast-bottom-left'
               })
             },
-            error: error => this.toastr.error("No se ha encontrando el producto", "Error", {
+            error: error => this.toastr.error("No se ha encontrado el producto", "Error ⚠", {
               positionClass: 'toast-bottom-left'
             })
           });

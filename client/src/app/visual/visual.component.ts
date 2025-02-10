@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Producto } from '../_models/Producto';
 import { ProductoService } from '../Services/Producto.Service';
 import localeEs from '@angular/common/locales/es';
 import { formatCurrency, registerLocaleData } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-visual',
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./visual.component.css']
 })
 export class VisualComponent implements OnInit {
+  
   producto!: Producto;
   BolElectrodomesticos: boolean = false;
   BolInformatica: boolean = false;
@@ -18,9 +20,13 @@ export class VisualComponent implements OnInit {
   parametros: any | [ ];
   valor: string ="";
   formattedPrice: string = '';
-  PRECIO!: string
+  PRECIO!: string;
+  modalRef?: BsModalRef;
+  config = {
+    animated: true
+  };
 
-  constructor(private servicio: ProductoService, private toast: ToastrService) { }
+  constructor(private servicio: ProductoService, private toast: ToastrService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     registerLocaleData(localeEs, 'es');
@@ -32,6 +38,7 @@ export class VisualComponent implements OnInit {
 
 
   crear() {
+    if (this.valor=="") this.valor="vacio";
     this.servicio.getProducto(this.valor).subscribe({
       next: (valor: Producto) =>{
         if (this.valor=="") this.toast.error("No se ha encontrado el id","Error", {
@@ -50,8 +57,15 @@ export class VisualComponent implements OnInit {
           this.BolInformatica = true;
         }
       },
-      error: error => this.toast.error("No se ha encontrado el id","Error", {
-        positionClass: 'toast-bottom-left'})
+      error: error =>{
+        this.toast.error("No se ha encontrado el id","Error ⚠", {
+          positionClass: 'toast-bottom-left'})
+        this.Creado=false
+      } 
     });
+  }
+
+  openModal(template: TemplateRef<void>) {
+    this.modalRef = this.modalService.show(template, this.config);
   }
 }

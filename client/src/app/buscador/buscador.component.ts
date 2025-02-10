@@ -21,7 +21,7 @@ export class BuscadorComponent implements OnInit {
         next: (valor: Producto) =>{
           this.router.navigateByUrl('actualizador/' + this.valor)
         },
-        error: error => this.toast.error("No se ha encontrado el id","Error", {
+        error: error => this.toast.error("No se ha encontrado el id","Error ⚠", {
           positionClass: 'toast-bottom-left'})
       });
     }

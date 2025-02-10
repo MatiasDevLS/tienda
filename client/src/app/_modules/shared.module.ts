@@ -4,6 +4,7 @@ import { FileUploadModule } from "ng2-file-upload";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
     declarations: [],
     imports: [
@@ -12,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
         type: 'fire'
       }),
       FileUploadModule ,
-      ToastrModule.forRoot()
+      ToastrModule.forRoot(),
     ],
     exports: [
       NgxSpinnerModule,

@@ -167,7 +167,7 @@ namespace Api.Controllers
         [HttpDelete("borrar/{id}")]
         public async Task<ActionResult> DeleteProducto (string id)
         {
-            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            var producto = await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
             
             _context.Productos.Remove(producto);
             

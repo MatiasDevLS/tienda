@@ -16,7 +16,8 @@ import { BuscadorComponent } from './buscador/buscador.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { SharedModule } from './_modules/shared.module';
 import { FotoUpdaterComponent } from './foto-updater/foto-updater.component';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,12 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations'
     ReactiveFormsModule,
     FormsModule,
     DxButtonModule,
-    SharedModule
+    SharedModule,
+    ModalModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    [BsModalService]
   ],
   bootstrap: [AppComponent]
 })
