@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from '../Services/Producto.Service';
 import { Producto } from '../_models/Producto';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-buscador',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class BuscadorComponent implements OnInit {
   valor! : string
-  constructor(private servicio: ProductoService, private router: Router) { }
+  constructor(private servicio: ProductoService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +21,8 @@ export class BuscadorComponent implements OnInit {
         next: (valor: Producto) =>{
           this.router.navigateByUrl('actualizador/' + this.valor)
         },
-        error: error => console.log("No se ha encontrado el id") 
+        error: error => this.toast.error("No se ha encontrado el id","Error", {
+          positionClass: 'toast-bottom-left'})
       });
     }
 

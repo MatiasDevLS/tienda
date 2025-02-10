@@ -18,15 +18,15 @@ form{
 #rutas{
   border: 5px solid black;
   margin-top: 10%;
-  width: 20%;
-  height: 250px;
+  width: 30%;
+  height: 350px;
   box-shadow: 2px 2px 2px gray;
 }
 
 #rutas button{
   margin-right: 2% ;
   margin-top: 9%;
-  width: 25%;
+  width: 30%;
   height: 20%;
   box-shadow: 1px 1px 1px gray;
 }

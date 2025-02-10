@@ -93,12 +93,31 @@ precioCellTemplate = (container: any, options: any)=> {
     text: '1000€ - 5000€',
     value: [
       ['precio', '>=', 1000],
-      ['precio', '<', 5000],
+      ['precio', '<=', 5000],
     ],
   }, {
     text: 'Mas de 5000€',
-    value: ['Precio', '>=', 5000],
-  }];
+    value: ['precio', '>', 5000],
+  },
+  {
+  text: '5000€ - 10000€',
+  value: [
+    ['precio', '>=', 5000],
+    ['precio', '<=', 10000],
+  ],
+},{
+  text: '10000€ - 25000€',
+  value: [
+    ['precio', '>=', 10000],
+    ['precio', '<=', 25000],
+  ],
+},
+{
+  text: 'Mas de 25000€',
+  value: ['precio', '>', 25000],
+}
+
+];
   
 
   departamentoHeaderFilter: DxoHeaderFilterComponent['dataSource'] = [{
@@ -120,8 +139,15 @@ precioCellTemplate = (container: any, options: any)=> {
     if (confirm("Va a eliminar un producto?"))
         if (confirm('Confirma eliminar el producto con id: '+ this.valor)){
           this.servicio.eliminar(this.valor).subscribe({
-            next: () => this.dataGrid.instance.refresh(),
-            error: error => this.toastr.error("No se ha encontrando el producto")
+            next: () =>{
+              this.dataGrid.instance.refresh(),
+              this.toastr.success("Producto eliminado con exito","",{
+                positionClass: 'toast-bottom-left'
+              })
+            },
+            error: error => this.toastr.error("No se ha encontrando el producto", "Error", {
+              positionClass: 'toast-bottom-left'
+            })
           });
       };
   }

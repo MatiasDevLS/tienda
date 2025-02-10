@@ -3,6 +3,7 @@ import { Producto } from '../_models/Producto';
 import { ProductoService } from '../Services/Producto.Service';
 import localeEs from '@angular/common/locales/es';
 import { formatCurrency, registerLocaleData } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-visual',
@@ -19,7 +20,7 @@ export class VisualComponent implements OnInit {
   formattedPrice: string = '';
   PRECIO!: string
 
-  constructor(private servicio: ProductoService) { }
+  constructor(private servicio: ProductoService, private toast: ToastrService) { }
 
   ngOnInit(): void {
     registerLocaleData(localeEs, 'es');
@@ -33,6 +34,8 @@ export class VisualComponent implements OnInit {
   crear() {
     this.servicio.getProducto(this.valor).subscribe({
       next: (valor: Producto) =>{
+        if (this.valor=="") this.toast.error("No se ha encontrado el id","Error", {
+          positionClass: 'toast-bottom-left'});
         this.Creado=true
         this.producto=valor
         this.PRECIO=this.FormatPrice(this.producto.precio)
@@ -47,7 +50,8 @@ export class VisualComponent implements OnInit {
           this.BolInformatica = true;
         }
       },
-      error: error => console.log("No se ha encontrado el id") 
+      error: error => this.toast.error("No se ha encontrado el id","Error", {
+        positionClass: 'toast-bottom-left'})
     });
   }
 }
