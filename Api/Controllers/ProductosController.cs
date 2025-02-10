@@ -294,7 +294,11 @@ namespace Api.Controllers
         {
             var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
 
-            
+            var productoNoVenta = producto.Stocks.FindAll(x => x.EnVenta==false);
+
+            for (int i=0; i<cantidad; i++){
+                productoNoVenta[i].EnVenta=true;
+            }
 
             await _context.SaveChangesAsync();
 

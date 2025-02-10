@@ -14,6 +14,8 @@ export class VentasTabsComponent implements OnInit {
   id!: string
   productoEncontrado!: Producto
   cantidad!:number
+  cantidadVenta!:number
+
     constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -27,11 +29,14 @@ export class VentasTabsComponent implements OnInit {
 
   addStock()
   {
-    console.log(this.cantidad)
     this.productoService.añadirStock(this.id, this.cantidad).subscribe();
     window.location.reload()
+  }
 
-
+  ponerVenta()
+  {
+    this.productoService.ponerVenta(this.id, this.cantidadVenta).subscribe();
+    window.location.reload()
   }
 
 }

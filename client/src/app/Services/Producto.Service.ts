@@ -32,6 +32,11 @@ export class ProductoService {
         return this.http.post(this.baseUrl + 'Productos/ventas/'+ id + '/' + cantidad,"")
       }
 
+      ponerVenta(id: string, cantidad : number)
+      {
+        return this.http.put(this.baseUrl + 'Productos/ventas/'+ id + '/' + cantidad,"")
+      }
+
 
 
 

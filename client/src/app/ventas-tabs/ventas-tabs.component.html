@@ -14,15 +14,17 @@
           <tr>
             <td>
               Añadir stock
-              <form #registerForm="ngForm" (ngSubmit)="addStock()"> 
+              <form #registerStockForm="ngForm" (ngSubmit)="addStock()"> 
                 <input type="number"  name="cantidad" class="form-control" [(ngModel)]="cantidad">
                 <button class="btn btn-dark" type="submit" >Aumentar</button>
               </form>
-              
             </td>
             <td>
               Poner en venta
-              <input type="number" class="form-control">
+              <form #registerEnVentaForm="ngForm" (ngSubmit)="ponerVenta()"> 
+                <input type="number"  name="cantidadVenta" class="form-control" [(ngModel)]="cantidadVenta">
+                <button class="btn btn-dark" type="submit" >Poner en venta</button>
+              </form>
             </td>
             <td>
               Quitar en venta
