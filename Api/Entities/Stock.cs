@@ -9,7 +9,7 @@ namespace Api.Entities
     {
         [Key]
         public string Contador { get; set; }
-        public int Precio { get; set; }
+        public float Precio { get; set; }
         public bool Vendido { get; set; }
         public bool EnVenta { get; set; }
 

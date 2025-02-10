@@ -243,5 +243,42 @@ namespace Api.Controllers
 
             return Ok();
         }
+
+            [HttpPost("ventas/{id}/{cantidad}")]
+        public async Task<ActionResult<int>> addStock(string id,int cantidad)
+        {
+            var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+
+            if (producto.Stocks.Count()==0){
+                var NuevoStock = new Stock{
+                    Precio = producto.Precio,
+                    Vendido = false,
+                    EnVenta = false,
+                    Contador  = producto.Id+"1",
+                    ProductoId = producto.Id,
+                    Producto = producto
+                };
+                cantidad-=1;
+                producto.Stocks.Add(NuevoStock);
+            }
+
+            for(var i=0; i<cantidad; i++){
+                var NuevoStock = new Stock{
+                    Precio = producto.Precio,
+                    Vendido = false,
+                    EnVenta = false,
+                    Contador  = producto.Id+producto.Stocks.Count(),
+                    ProductoId = producto.Id,
+                    Producto = producto
+                };
+                producto.Stocks.Add(NuevoStock);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return  producto.Stocks.Count();
+        }
     } 
+
+
 }
