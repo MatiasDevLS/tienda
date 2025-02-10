@@ -27,6 +27,60 @@ namespace Api.Controllers
             return productos;
         }
 
+        [HttpGet("comprar")]
+        public async Task<ActionResult<List<ProductoDto>>> GetProductosEnVenta()
+        {
+            var productos = await _context.Productos.Include(p => p.Stocks).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).ToListAsync();
+            List<ProductoDto> productosEnVenta= [];
+            foreach (var item in productos)
+            {
+                if (item.Stocks.FirstOrDefault(x => x.EnVenta == true)!=null){
+                    if (item.Informaticas.Count()>0){
+                var PdInformatica = item.Informaticas[0];
+
+                var productoDto = new ProductoDto
+                    {
+                    Id = item.Id,
+                    Nombre = item.Nombre,
+                    Precio = item.Precio,
+                    Tipo = PdInformatica.Tipo,
+                    Descripcion = PdInformatica.Descripcion,
+                    Marca = PdInformatica.Marca,
+                    Departamento = "Informatica",
+                    FotoUrl = item.Fotos[0].Url,
+                    Stocks = item.Stocks.FindAll(x => x.Vendido==false).Count(),
+                    CantidadVendidos = item.Stocks.FindAll(x => x.Vendido==true).Count(),
+                    CantidadVenta = item.Stocks.FindAll(x => x.EnVenta==true).Count(),
+                    Ganancias = item.Ganancias
+                    };
+                productosEnVenta.Add(productoDto);
+            }
+            else{
+                var PdElectrodomesticos = item.Electrodomesticos[0];
+
+                var productoDto = new ProductoDto
+                    {
+                        Id = item.Id,
+                        Nombre = item.Nombre,
+                        Precio = item.Precio,
+                        Consumo = PdElectrodomesticos.Consumo,
+                        Localizacion = PdElectrodomesticos.Localizacion,
+                        Descripcion = PdElectrodomesticos.Descripcion,
+                        Marca = PdElectrodomesticos.Marca,
+                        Departamento = "Electrodomesticos",
+                        FotoUrl = item.Fotos[0].Url,
+                        Stocks = item.Stocks.FindAll(x => x.Vendido==false).Count(),
+                        CantidadVendidos = item.Stocks.FindAll(x => x.Vendido==true).Count(),
+                        CantidadVenta = item.Stocks.FindAll(x => x.EnVenta==true).Count(),
+                        Ganancias = item.Ganancias
+                    };
+                productosEnVenta.Add(productoDto);
+            }
+                }
+            }
+            return productosEnVenta;
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductoDto>> GetProductoById(string id)
         {

@@ -52,6 +52,7 @@ export class VentasTabsComponent implements OnInit {
       error: () =>{this.toastr.error("No puede poner a la venta más productos de los existentes", "Error ⚠", {
               positionClass: 'toast-bottom-left'
       })
+                  this.cantidadVenta=0;
        
     }
     });
@@ -66,6 +67,7 @@ export class VentasTabsComponent implements OnInit {
       error: () =>{this.toastr.error("No puede quitar de la venta más productos de los existentes", "Error ⚠", {
               positionClass: 'toast-bottom-left'
       })
+                this.cantidadQuitarVenta=0;
        
     }
     });

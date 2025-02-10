@@ -21,6 +21,7 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { VentasComponent } from './ventas/ventas.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
+import { CompraComponent } from './compra/compra.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
     FotoUpdaterComponent,
     VentasComponent,
     VentasTabsComponent,
+    CompraComponent,
   ],
   imports: [
     BrowserAnimationsModule,

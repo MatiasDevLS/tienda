@@ -1,23 +1,6 @@
 <div id="contenedor">
     <tabset class="text-center">
       <h4>Producto con id: {{productoEncontrado.id}}</h4>
-      <tab heading="Ganancias" id="tab1">
-        <table id="ventas" align="center">
-          <tr>
-            <td>
-              <div>
-                <p>Total de productos vendidos: {{productoEncontrado.cantidadVendidos}} </p>
-              </div>
-            </td>
-            <td>
-              <div>
-                <p>Total de ganancias: {{FormatPrice(productoEncontrado.ganancias)}}</p>
-              </div>
-            </td>
-          </tr>
-        </table>
-
-      </tab>
       <tab heading="Administrar">
         <table id="funciones">
           <tr>
@@ -56,6 +39,23 @@
             </td>
           </tr>
         </table>
+      </tab>
+      <tab heading="Ganancias" id="tab1">
+        <table id="ventas" align="center">
+          <tr>
+            <td>
+              <div>
+                <p>Total de productos vendidos: {{productoEncontrado.cantidadVendidos}} </p>
+              </div>
+            </td>
+            <td>
+              <div>
+                <p>Total de ganancias: {{FormatPrice(productoEncontrado.ganancias)}}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+
       </tab>
     </tabset>
   </div>

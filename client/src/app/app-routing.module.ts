@@ -11,6 +11,7 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 import { PreventUnsavedChangesGuardRegister } from './_guards/prevent-unsaved-changes-register.guard';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
+import { CompraComponent } from './compra/compra.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'actualizadorFoto/:id', component: FotoUpdaterComponent },
   {path: 'visual', component: VisualComponent},
   {path: 'ventas', component: VentasComponent},
-  {path: 'ventas/:id', component: VentasTabsComponent}
+  {path: 'ventas/:id', component: VentasTabsComponent},
+  {path: 'compra', component: CompraComponent}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
