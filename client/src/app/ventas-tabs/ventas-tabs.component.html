@@ -1,16 +1,25 @@
-<h2>Producto con id: {{productoEncontrado.id}}</h2>
-<div>
-    <tabset>
+<div id="contenedor">
+    <tabset class="text-center">
+      <h4>Producto con id: {{productoEncontrado.id}}</h4>
       <tab heading="Ganancias" id="tab1">
-        <div>
-          <p>Total de productos vendidos: {{productoEncontrado.cantidadVendidos}} </p>
-        </div>
-        <div>
-          <p>Total de ganancias: {{productoEncontrado.ganancias}}</p>
-        </div>
+        <table id="ventas" align="center">
+          <tr>
+            <td>
+              <div>
+                <p>Total de productos vendidos: {{productoEncontrado.cantidadVendidos}} </p>
+              </div>
+            </td>
+            <td>
+              <div>
+                <p>Total de ganancias: {{productoEncontrado.ganancias}}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+
       </tab>
       <tab heading="Administrar">
-        <table>
+        <table id="funciones">
           <tr>
             <td>
               Añadir stock
@@ -19,6 +28,16 @@
                 <button class="btn btn-dark" type="submit" >Aumentar</button>
               </form>
             </td>
+            <td rowspan="3" id="datos">
+              <div id="datos1">
+                Stock total: {{productoEncontrado.stocks}}
+              </div>
+              <div  id="datos2">
+                Productos en venta: {{productoEncontrado.cantidadVenta}}
+              </div>
+            </td>
+          </tr>
+          <tr>
             <td>
               Poner en venta
               <form #registerEnVentaForm="ngForm" (ngSubmit)="ponerVenta()"> 
@@ -26,22 +45,14 @@
                 <button class="btn btn-dark" type="submit" >Poner en venta</button>
               </form>
             </td>
-            <td>
-              Quitar en venta
-              <form #registerQuitarVentaForm="ngForm" (ngSubmit)="quitarVenta()"> 
-                <input type="number"  name="cantidadQuitarVenta" class="form-control" [(ngModel)]="cantidadQuitarVenta">
-                <button class="btn btn-dark" type="submit" >Quitar en venta</button>
-              </form>
-            </td>
           </tr>
           <tr>
             <td>
-              <div>
-                Stock total: {{productoEncontrado.stocks}}
-              </div>
-              <div>
-                Productos en venta: {{productoEncontrado.cantidadVenta}}
-              </div>
+              Quitar en venta
+              <form #registerQuitarVentaForm="ngForm" (ngSubmit)="quitarVenta()"> 
+                <input type="number"  name="cantidadQuitarVentat" class="form-control" [(ngModel)]="cantidadQuitarVenta">
+                <button class="btn btn-dark" type="submit" >Quitar en venta</button>
+              </form>
             </td>
           </tr>
         </table>
