@@ -18,6 +18,9 @@ import { SharedModule } from './_modules/shared.module';
 import { FotoUpdaterComponent } from './foto-updater/foto-updater.component';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { VentasComponent } from './ventas/ventas.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
     UpdaterComponent,
     BuscadorComponent,
     FotoUpdaterComponent,
+    VentasComponent,
+    VentasTabsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -42,7 +47,8 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
     FormsModule,
     DxButtonModule,
     SharedModule,
-    ModalModule
+    ModalModule,
+    TabsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},

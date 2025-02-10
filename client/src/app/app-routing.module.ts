@@ -9,6 +9,8 @@ import { BuscadorComponent } from './buscador/buscador.component';
 import { FotoUpdaterComponent } from './foto-updater/foto-updater.component';
 import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
 import { PreventUnsavedChangesGuardRegister } from './_guards/prevent-unsaved-changes-register.guard';
+import { VentasComponent } from './ventas/ventas.component';
+import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: 'buscar', component: BuscadorComponent},
   {path: 'actualizador/:id', component: UpdaterComponent , canDeactivate: [PreventUnsavedChangesGuard] },
   {path: 'actualizadorFoto/:id', component: FotoUpdaterComponent },
-  {path: 'visual', component: VisualComponent}
+  {path: 'visual', component: VisualComponent},
+  {path: 'ventas', component: VentasComponent},
+  {path: 'ventas/:id', component: VentasTabsComponent}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
         type: 'fire'
       }),
       FileUploadModule ,
-      ToastrModule.forRoot(),
+      ToastrModule.forRoot()
     ],
     exports: [
       NgxSpinnerModule,
