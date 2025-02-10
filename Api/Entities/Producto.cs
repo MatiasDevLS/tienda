@@ -12,7 +12,7 @@ namespace Api.Data
         public required string Nombre { get; set; }
         public float Precio { get; set; }
         public string Departamento { get; set; }
-        public int Ganancias { get; set; }
+        public float Ganancias { get; set; }
 
         public List<Foto> Fotos { get;set;}
         public List<Electrodomestico> Electrodomesticos { get;set;}

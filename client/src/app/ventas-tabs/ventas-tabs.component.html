@@ -11,7 +11,7 @@
             </td>
             <td>
               <div>
-                <p>Total de ganancias: {{productoEncontrado.ganancias}}</p>
+                <p>Total de ganancias: {{FormatPrice(productoEncontrado.ganancias)}}</p>
               </div>
             </td>
           </tr>
@@ -42,7 +42,7 @@
               Poner en venta
               <form #registerEnVentaForm="ngForm" (ngSubmit)="ponerVenta()"> 
                 <input type="number"  name="cantidadVenta" class="form-control" [(ngModel)]="cantidadVenta">
-                <button class="btn btn-dark" type="submit" >Poner en venta</button>
+                <button class="btn btn-dark" type="submit" >Poner</button>
               </form>
             </td>
           </tr>
@@ -51,7 +51,7 @@
               Quitar en venta
               <form #registerQuitarVentaForm="ngForm" (ngSubmit)="quitarVenta()"> 
                 <input type="number"  name="cantidadQuitarVentat" class="form-control" [(ngModel)]="cantidadQuitarVenta">
-                <button class="btn btn-dark" type="submit" >Quitar en venta</button>
+                <button class="btn btn-dark" type="submit" >Quitar</button>
               </form>
             </td>
           </tr>

@@ -47,7 +47,7 @@ namespace Api.Controllers
                     Marca = PdInformatica.Marca,
                     Departamento = "Informatica",
                     FotoUrl = producto.Fotos[0].Url,
-                    Stocks = producto.Stocks.Count(),
+                    Stocks = producto.Stocks.FindAll(x => x.Vendido==false).Count(),
                     CantidadVendidos = producto.Stocks.FindAll(x => x.Vendido==true).Count(),
                     CantidadVenta = producto.Stocks.FindAll(x => x.EnVenta==true).Count(),
                     Ganancias = producto.Ganancias
@@ -68,7 +68,7 @@ namespace Api.Controllers
                         Marca = PdElectrodomesticos.Marca,
                         Departamento = "Electrodomesticos",
                         FotoUrl = producto.Fotos[0].Url,
-                        Stocks = producto.Stocks.Count(),
+                        Stocks = producto.Stocks.FindAll(x => x.Vendido==false).Count(),
                         CantidadVendidos = producto.Stocks.FindAll(x => x.Vendido==true).Count(),
                         CantidadVenta = producto.Stocks.FindAll(x => x.EnVenta==true).Count(),
                         Ganancias = producto.Ganancias
@@ -312,6 +312,8 @@ namespace Api.Controllers
 
             var productoNoVenta = producto.Stocks.FindAll(x => x.EnVenta==true && x.Vendido==false);
 
+            if (cantidad>productoNoVenta.Count()) return BadRequest("Cantidad mayor a la existente");
+
             for (int i=0; i<cantidad; i++){
                 productoNoVenta[i].EnVenta=false;
             }
@@ -319,6 +321,29 @@ namespace Api.Controllers
             await _context.SaveChangesAsync();
 
             return  producto.Stocks.Count();
+        }
+
+        [HttpPut("ventas/comprar/{id}/{cantidad}")]
+        public async Task<ActionResult<float>> comprarProducto(string id,int cantidad)
+        {
+            var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+
+            var productoNoVenta = producto.Stocks.FindAll(x => x.EnVenta==true && x.Vendido==false);
+
+            if (cantidad>productoNoVenta.Count()) return BadRequest("Cantidad mayor a la existente");
+
+            for (int i=0; i<cantidad; i++){
+                productoNoVenta[i].EnVenta=false;
+                productoNoVenta[i].Vendido=true;
+            }
+
+            await _context.SaveChangesAsync();
+
+            producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            producto.Ganancias += cantidad * producto.Precio;
+
+            await _context.SaveChangesAsync();
+            return   producto.Ganancias;
         }
 
     } 

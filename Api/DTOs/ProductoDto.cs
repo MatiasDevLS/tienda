@@ -21,6 +21,6 @@ namespace Api.DTOs
         public int Stocks { get;set;}
         public int CantidadVendidos { get; set; }
         public int CantidadVenta { get; set; }
-        public int Ganancias { get; set; }
+        public float Ganancias { get; set; }
     }
 }
