@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductoService } from '../Services/Producto.Service';
+import { Producto } from '../_models/Producto';
 
 @Component({
   selector: 'app-ventas-tabs',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VentasTabsComponent implements OnInit {
 
-  constructor() { }
+  id!: string
+  productoEncontrado!: Producto
+
+    constructor( private fb: FormBuilder, private router: Router, private productoService: ProductoService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+        this.id =this.activatedRoute.snapshot.paramMap.get('id')!;
+        this.productoService.getProducto(this.id).subscribe({
+          next: (valor : Producto) => {
+            this.productoEncontrado = valor;
+          }
+        })
   }
 
 }

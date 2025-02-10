@@ -16,6 +16,7 @@ namespace Api.Data
         public List<Foto> Fotos { get;set;}
         public List<Electrodomestico> Electrodomesticos { get;set;}
         public List<Informatica> Informaticas { get;set;}
+        public List<Stock> Stocks { get;set;}
 
     }
 }

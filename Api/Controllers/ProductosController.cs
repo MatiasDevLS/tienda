@@ -30,7 +30,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductoDto>> GetProductoById(string id)
         {
-            var producto = await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == id);
+            var producto = await _context.Productos.Include(p => p.Stocks).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == id);
             if (producto.Fotos.Count()==0){
                 producto.Fotos.Add(new Foto());
             }
@@ -89,7 +89,7 @@ namespace Api.Controllers
             Guid newGuid = Guid.NewGuid();
             string guidString = newGuid.ToString();
 
-            while (await _context.Productos.FindAsync(await _context.Productos.Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == guidString))!=null)
+            while (await _context.Productos.FindAsync(await _context.Productos.Include(p => p.Stocks).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).Include(f => f.Fotos).SingleOrDefaultAsync(x => x.Id == guidString))!=null)
             {
                 newGuid = Guid.NewGuid();
                 guidString = newGuid.ToString();
@@ -107,7 +107,8 @@ namespace Api.Controllers
                     Departamento = "Informatica",
                     Fotos= [],
                     Electrodomesticos = [],
-                    Informaticas = []
+                    Informaticas = [],
+                    Stocks = []
                 };
 
                 var productoInfor = new Informatica
@@ -139,7 +140,8 @@ namespace Api.Controllers
                     Departamento = "Electrodomestico",
                     Fotos= [],
                     Electrodomesticos = [],
-                    Informaticas = []
+                    Informaticas = [],
+                    Stocks = []
                 };
 
                 var productoElec = new Electrodomestico
@@ -167,7 +169,7 @@ namespace Api.Controllers
         [HttpDelete("borrar/{id}")]
         public async Task<ActionResult> DeleteProducto (string id)
         {
-            var producto = await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+            var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
             
             _context.Productos.Remove(producto);
             
@@ -180,9 +182,9 @@ namespace Api.Controllers
         [HttpPost("cambios")]
         public async Task<ActionResult> UpdateUser( ProductoDto productoDto)
         {
-            var productoActualizar = await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id);
+            var productoActualizar = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id);
 
-            _context.Productos.Remove(await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id));
+            _context.Productos.Remove(await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == productoDto.Id));
 
             await _context.SaveChangesAsync();
 
@@ -214,7 +216,7 @@ namespace Api.Controllers
         {
             var result = await _fotoService.AddPhotoAsync(file);
 
-             var producto = await _context.Productos.Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
+             var producto = await _context.Productos.Include(p => p.Stocks).Include(f => f.Fotos).Include(p => p.Electrodomesticos).Include(a => a.Informaticas).SingleOrDefaultAsync(x => x.Id == id);
 
             var foto = new Foto
             {

@@ -1,4 +1,4 @@
-<h2>Producto con id:</h2>
+<h2>Producto con id: {{productoEncontrado.id}}</h2>
 <div>
     <tabset>
       <tab heading="Ganancias" id="tab1">
@@ -12,6 +12,10 @@
       <tab heading="Administrar">
         <table>
           <tr>
+            <td>
+              Añadir stock
+              <input type="number" class="form-control">
+            </td>
             <td>
               Poner en venta
               <input type="number" class="form-control">
