@@ -16,4 +16,9 @@ export class UsuarioService {
       {
         return this.http.post<Usuario>(this.baseUrl + "Usuarios/registroUsuario", model)
       }
+
+      IniciarUsuario( model: Usuario )
+      {
+        return this.http.post<Usuario>(this.baseUrl + "Usuarios/inicioUsuario", model)
+      }
 }

@@ -14,6 +14,7 @@ import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
 import { CompraComponent } from './compra/compra.component';
 import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'ventas/:id', component: VentasTabsComponent},
   {path: 'compra', component: CompraComponent},
   {path: 'compra/zona/:id', component: ZonaCompraComponent},
-  {path: 'registroUsuario', component: RegistroUsuarioComponent}
+  {path: 'registroUsuario', component: RegistroUsuarioComponent},
+  {path: 'inicioSesion', component: InicioSesionComponent}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

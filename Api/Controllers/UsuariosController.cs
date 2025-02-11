@@ -47,8 +47,8 @@ namespace Api.Controllers
             if (!resultado) return Unauthorized("Usuario invalido");
 
             return  new Usuario{
-                Nombre = usuarioDto.Nombre,
-                Apellidos = usuarioDto.Apellidos,
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
                 UserName = usuarioDto.Username
             };
 
