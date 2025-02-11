@@ -35,6 +35,17 @@ namespace Api.Controllers
             foreach (var item in productos)
             {
                 if (item.Stocks.FirstOrDefault(x => x.EnVenta == true)!=null){
+                    if (item.Fotos.Count()==0){
+                        var foto = new Foto
+                        {
+                            
+                            Url = "https://res.cloudinary.com/dbqouohtd/image/upload/v1739204851/da-net7/sugqjfadlhkyiuzy6yhg.jpg",
+                            publicId = "da-net7/sugqjfadlhkyiuzy6yhg",
+                            ProductoId = item.Id,
+                            Producto = item
+                        };
+                        item.Fotos.Add(foto);
+                    }
                     if (item.Informaticas.Count()>0){
                 var PdInformatica = item.Informaticas[0];
 

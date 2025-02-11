@@ -21,15 +21,15 @@ img {
 }
 
 
-form {
+input {
+    margin-bottom: 5%;
+}
+
+#contenedor{
     margin-top: 2%;
     margin-left: 33%;
-    width: 30%;
+    width: 40%;
     padding: 55px;
     border: 3px solid black;
     box-shadow: 2px 2px 2px gray;
-}
-
-input {
-    margin-bottom: 5%;
 }
