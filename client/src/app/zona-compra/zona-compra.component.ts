@@ -46,6 +46,7 @@ export class ZonaCompraComponent implements OnInit {
     if (confirm("Usted va a realizar una compra con un coste de "+this.FormatPrice(this.producto.precio*this.cantidadProd))==true){
       this.servicio.putComprar(this.id, this.cantidadProd).subscribe({
         next: () => {
+          this.toast.success("Gracias por su compra")
           this.router.navigate(['compra']);
         },
         error: () =>{this.toast.error("Número mayor al del stock", "Error ⚠", {
