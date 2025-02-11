@@ -29,6 +29,7 @@ namespace Api.Extensions
             services.AddCors();
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<IFotoService, FotoService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             return services;
         }
