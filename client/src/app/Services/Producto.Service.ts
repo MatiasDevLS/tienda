@@ -46,6 +46,10 @@ export class ProductoService {
         return this.http.get<Producto[]>(this.baseUrl + 'Productos/comprar');
       }
 
+      putComprar(id: string, cantidad : number){
+        return this.http.put(this.baseUrl + 'Productos/ventas/comprar/'+ id + '/' + cantidad,"")
+      }
+
 
 
 }

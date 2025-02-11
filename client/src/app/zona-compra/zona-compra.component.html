@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col" id="nombre">
+            <p>{{producto.nombre}} {{producto.marca}} {{producto.descripcion}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="{{producto.fotoUrl}}">
+        </div>
+        <div class="col" id="texto">
+            <p [hidden]="producto.departamento!='Electrodomesticos'">Consumo: {{producto.consumo}}</p>
+            <p [hidden]="producto.departamento!='Electrodomesticos'">Localización: {{producto.localizacion}}</p>
+            <p [hidden]="producto.departamento=='Electrodomesticos'">Tipo: {{producto.tipo}}</p>
+            <p><b> Stock</b>:  {{producto.cantidadVenta}}</p>
+            <div id="precio">{{FormatPrice(producto.precio)}}</div>
+
+            <div>
+                <form #registerForm="ngForm" (ngSubmit)="comprar()">
+                    <table>
+                        <tr>
+                            <td><input type="text" placeholder="Cantidad" name="valor" class="form-control"
+                                [(ngModel)]="cantidadProd"></td>
+                                <td><button class="btn btn-success" type="submit">Comprar</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

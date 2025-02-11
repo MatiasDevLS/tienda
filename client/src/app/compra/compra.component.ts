@@ -11,11 +11,10 @@ import { formatCurrency, registerLocaleData } from '@angular/common';
   styleUrls: ['./compra.component.css']
 })
 export class CompraComponent implements OnInit {
- producto!: Producto;
+  producto!: Producto;
   BolElectrodomesticos: boolean = false;
   BolInformatica: boolean = false;
   formattedPrice: string = '';
-  PRECIO!: string;
   productos!: Producto[];
  constructor(private servicio: ProductoService, private toast: ToastrService) { }
 
@@ -33,16 +32,6 @@ export class CompraComponent implements OnInit {
       this.servicio.getProductosVenta().subscribe({
         next: (valores: Producto[]) =>{
           this.productos=valores
-          this.PRECIO=this.FormatPrice(this.producto.precio)
-          // if (this.producto.departamento == "Electrodomesticos"){
-          //   this.BolInformatica = false;
-          //   this.BolElectrodomesticos = true;
-  
-          // }
-          // else if(this.producto.departamento == "Informatica"){
-          //   this.BolElectrodomesticos = false;
-          //   this.BolInformatica = true;
-          // }
         }
       });
     }

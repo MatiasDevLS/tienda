@@ -22,6 +22,7 @@ import { VentasComponent } from './ventas/ventas.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
 import { CompraComponent } from './compra/compra.component';
+import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CompraComponent } from './compra/compra.component';
     VentasComponent,
     VentasTabsComponent,
     CompraComponent,
+    ZonaCompraComponent,
   ],
   imports: [
     BrowserAnimationsModule,

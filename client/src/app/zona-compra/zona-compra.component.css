@@ -1,0 +1,25 @@
+#nombre{
+    margin-top: 3%;
+    font-size: larger;
+
+font-weight: bold;}
+
+img{
+    max-width: 50%;
+    margin-left: 12%;
+}
+
+#texto{
+    margin-top: 5%;
+    margin-right: 10%;
+    font-weight: large;
+}
+
+#precio{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-weight: bolder;
+    font-size: x-large;
+    color: green;
+}
+
