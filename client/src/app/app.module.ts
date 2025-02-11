@@ -23,6 +23,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
 import { CompraComponent } from './compra/compra.component';
 import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
     VentasTabsComponent,
     CompraComponent,
     ZonaCompraComponent,
+    RegistroUsuarioComponent,
+    InicioSesionComponent,
   ],
   imports: [
     BrowserAnimationsModule,

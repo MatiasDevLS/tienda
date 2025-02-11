@@ -13,6 +13,7 @@ import { VentasComponent } from './ventas/ventas.component';
 import { VentasTabsComponent } from './ventas-tabs/ventas-tabs.component';
 import { CompraComponent } from './compra/compra.component';
 import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
+import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'ventas', component: VentasComponent},
   {path: 'ventas/:id', component: VentasTabsComponent},
   {path: 'compra', component: CompraComponent},
-  {path: 'compra/zona/:id', component: ZonaCompraComponent}
+  {path: 'compra/zona/:id', component: ZonaCompraComponent},
+  {path: 'registroUsuario', component: RegistroUsuarioComponent}
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

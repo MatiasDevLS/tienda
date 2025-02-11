@@ -8,7 +8,6 @@ namespace Api.Entities
         
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
-        public string Username { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
     }
 }
