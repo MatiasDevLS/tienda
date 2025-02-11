@@ -54,7 +54,7 @@ formatCurrency(amount: number): string {
 
   const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
 
-  return `€${formattedIntegerPart},${decimalPart}`; 
+  return `${formattedIntegerPart},${decimalPart}€`; 
 }
 
 precioCellTemplate = (container: any, options: any)=> {
