@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.DTOs;
 using Api.Entities;
+using Api.Interfaces;
 using API.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,14 @@ namespace Api.Controllers
     public class UsuariosController : BaseApiController
     {
         private readonly UserManager<Usuario> _userManager;
-        public UsuariosController(UserManager<Usuario> userManager)
+        private readonly ITokenService _tokenService;
+        public UsuariosController(UserManager<Usuario> userManager, ITokenService tokenService)
         {
             _userManager = userManager;
+            _tokenService = tokenService;
         }
         [HttpPost("registroUsuario")]
-        public async Task<ActionResult<Usuario>> RegistrarUsuario(UsuarioDto usuarioDto)
+        public async Task<ActionResult<UsuarioDto>> RegistrarUsuario(UsuarioDto usuarioDto)
         {
             var usuario= new Usuario{
                 Nombre = usuarioDto.Nombre,
@@ -29,7 +32,12 @@ namespace Api.Controllers
 
             var  resultado = await _userManager.CreateAsync(usuario, usuarioDto.Password);
 
-            return usuario;
+            return new UsuarioDto{
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
+                Username = usuario.UserName,
+                Token = _tokenService.CrearToken(usuario)
+            };
 
             
             
@@ -37,7 +45,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("inicioUsuario")]
-        public async Task<ActionResult<Usuario>> InicioUsuario(UsuarioDto usuarioDto)
+        public async Task<ActionResult<UsuarioDto>> InicioUsuario(UsuarioDto usuarioDto)
         {
             var usuario =  _userManager.Users
                 .SingleOrDefault(x => x.UserName == usuarioDto.Username);
@@ -46,10 +54,11 @@ namespace Api.Controllers
 
             if (!resultado) return Unauthorized("Usuario invalido");
 
-            return  new Usuario{
+            return  new UsuarioDto{
                 Nombre = usuario.Nombre,
                 Apellidos = usuario.Apellidos,
-                UserName = usuarioDto.Username
+                Username = usuarioDto.Username,
+                Token = _tokenService.CrearToken(usuario)
             };
 
            

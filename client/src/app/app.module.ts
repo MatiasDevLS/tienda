@@ -44,6 +44,7 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
     ZonaCompraComponent,
     RegistroUsuarioComponent,
     InicioSesionComponent,
+
   ],
   imports: [
     BrowserAnimationsModule,

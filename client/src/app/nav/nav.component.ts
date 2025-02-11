@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../Services/usuario.service';
+import { Usuario } from '../_models/Usuario';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
-  constructor() { }
+  usuario!: Usuario
+  iniciado=false
+  constructor(private usuarioService : UsuarioService) { }
 
   ngOnInit(): void {
+    this.usuarioService.usuarioActual$.subscribe({
+      next: (valor: any) =>{
+        this.usuario=valor;
+        this.iniciado= !!valor;
+      }
+    })
+    this.usuarioActual()
+  }
+
+  usuarioActual() {
+      const stringUsuario = localStorage.getItem('usuario');
+      if (!stringUsuario) return;
+      const usuario: Usuario = JSON.parse(stringUsuario);
+      this.usuario=usuario
+      this.iniciado=true;
+      this.usuarioService.establecerUsuario(usuario)
   }
 
 }

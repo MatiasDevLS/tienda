@@ -27,11 +27,14 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page"  routerLink="compra" routerLinkActive="active">Compras</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [hidden]="this.iniciado==true">
             <a class="nav-link active" aria-current="page"  routerLink="registroUsuario" routerLinkActive="active">Registrarse</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [hidden]="this.iniciado==true">
             <a class="nav-link active" aria-current="page"  routerLink="inicioSesion" routerLinkActive="active">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  routerLink="inicioSesion" routerLinkActive="active">{{this.usuario.nombre}} {{this.usuario.apellidos}}</a>
           </li>
         </ul>
       </div>

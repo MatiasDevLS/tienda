@@ -3,7 +3,8 @@ import { NgModule } from "@angular/core";
 import { FileUploadModule } from "ng2-file-upload";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
     declarations: [],
@@ -13,7 +14,10 @@ import { ToastrModule } from 'ngx-toastr';
         type: 'fire'
       }),
       FileUploadModule ,
-      ToastrModule.forRoot()
+      ToastrModule.forRoot(),
+      BrowserAnimationsModule,
+      BsDropdownModule
+      
     ],
     exports: [
       NgxSpinnerModule,

@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../Services/usuario.service';
+import { Usuario } from '../_models/Usuario';
 
 @Component({
   selector: 'app-inicio',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(private http: HttpClient, private usuarioServicio: UsuarioService) {}
   ngOnInit(): void {
-  }
-
+      this.establecerUsuario()
+    }
+  
+    establecerUsuario() {
+      const stringUsuario = localStorage.getItem('usuario')
+      if (!stringUsuario) return;
+      const usuario: Usuario = JSON.parse(stringUsuario)
+      this.usuarioServicio.establecerUsuario(usuario)
+    }
 }

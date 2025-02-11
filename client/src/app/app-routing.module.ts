@@ -15,8 +15,10 @@ import { CompraComponent } from './compra/compra.component';
 import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { NavComponent } from './nav/nav.component';
 
 const routes: Routes = [
+  
   {path: '', component: InicioComponent},
   {path: 'datos', component: ListaComponent},
   {path: 'registro', component: RegisterComponent , canDeactivate: [PreventUnsavedChangesGuardRegister]},

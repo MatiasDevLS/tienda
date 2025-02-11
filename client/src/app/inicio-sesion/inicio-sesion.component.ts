@@ -45,18 +45,18 @@ export class InicioSesionComponent implements OnInit {
     });
   }
 
-  
+
 
   registrar() {
     if (confirm("Confirmar la creación del producto")){
     this.usuario = {...this.registerForm.value};
     this.creado=true;
     this.usuarioService.IniciarUsuario(this.usuario).subscribe({
-      next: (valor: Usuario) =>{
+      next: (valor: any) =>{
         this.toast.success("Hola "+valor.nombre+" "+valor.apellidos)
-        
       }
     })
+    this.router.navigate(['compra'])
   }
 
 
