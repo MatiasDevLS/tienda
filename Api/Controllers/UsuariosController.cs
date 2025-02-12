@@ -32,11 +32,13 @@ namespace Api.Controllers
 
             var  resultado = await _userManager.CreateAsync(usuario, usuarioDto.Password);
 
+            var rolResultado = await _userManager.AddToRoleAsync(usuario,"Miembro");
+
             return new UsuarioDto{
                 Nombre = usuario.Nombre,
                 Apellidos = usuario.Apellidos,
                 Username = usuario.UserName,
-                Token = _tokenService.CrearToken(usuario)
+                Token = await _tokenService.CrearToken(usuario)
             };
 
             
@@ -58,7 +60,7 @@ namespace Api.Controllers
                 Nombre = usuario.Nombre,
                 Apellidos = usuario.Apellidos,
                 Username = usuarioDto.Username,
-                Token = _tokenService.CrearToken(usuario)
+                Token = await _tokenService.CrearToken(usuario)
             };
 
            

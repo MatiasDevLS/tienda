@@ -30,7 +30,7 @@ namespace Api.Data
                 Apellidos = "Apellido1_admin Apellido2_admin"
             };
             await usuarioManager.CreateAsync(admin, "11111hJ");
-            await usuarioManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator"});
+            await usuarioManager.AddToRolesAsync(admin, new[] {"Admin", "Admin_medio","Admin_bajo"});
         }
     }
 }
