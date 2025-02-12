@@ -12,7 +12,7 @@
         {{label}} tiene que tener {{control.errors?.['minlength'].requiredLength}} carácteres
     </div>
     <div class="invalid-feedback" *ngIf="control.errors?.['pattern']">
-        {{label}} no cumple con el patron: 7 números y una letra en mayúscula.
+        {{label}} no cumple con el patron: mínimo 1 letra mayúscula, otra minúscula y un número.
     </div>
     <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">
         {{label}} sobrepasa los {{control.errors?.['maxlength'].requiredLength}} carácteres

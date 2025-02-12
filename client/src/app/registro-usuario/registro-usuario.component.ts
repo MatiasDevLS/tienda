@@ -43,8 +43,8 @@ export class RegistroUsuarioComponent implements OnInit {
     this.registerForm = this.fb.group({
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
-        username: ['',Validators.required],
-        password: ['', Validators.required]
+      username: ['',Validators.required],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9]+$'), Validators.minLength(8), Validators.maxLength(16)]]
     });
   }
 
@@ -54,7 +54,13 @@ export class RegistroUsuarioComponent implements OnInit {
     if (confirm("Confirmar la creación del usuario")){
     this.usuario = {...this.registerForm.value};
     this.creado=true;
-    this.usuarioService.registrarUsuario(this.usuario).subscribe()
+    this.usuarioService.registrarUsuario(this.usuario).subscribe({
+      error: () => {
+        alert("Usuario ya en uso")
+        window.location.reload()
+      }
+    }
+    )
     this.router.navigate([''])
     
   }

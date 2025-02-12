@@ -18,7 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
     ],
     exports: [
       NgxSpinnerModule,
-      FileUploadModule 
+      FileUploadModule ,
+      ToastrModule
     ]
   })
   export class SharedModule { }

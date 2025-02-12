@@ -31,7 +31,8 @@ namespace Api.Controllers
                 Apellidos = usuarioDto.Apellidos,
                 UserName = usuarioDto.Username
             };
-
+            if (_userManager.Users.AnyAsync(x => x.UserName == usuario.UserName.ToLower())==null) return BadRequest("Nombre de usuario en uso");
+            
             var  resultado = await _userManager.CreateAsync(usuario, usuarioDto.Password);
 
             var rolResultado = await _userManager.AddToRoleAsync(usuario,"Miembro");
@@ -57,6 +58,8 @@ namespace Api.Controllers
                 Apellidos = usuarioDto.Apellidos,
                 UserName = usuarioDto.Username
             };
+
+            if (_userManager.Users.AnyAsync(x => x.UserName == usuario.UserName.ToLower())!=null) return BadRequest("Nombre de usuario en uso");
 
             var  resultado = await _userManager.CreateAsync(usuario, usuarioDto.Password);
 
