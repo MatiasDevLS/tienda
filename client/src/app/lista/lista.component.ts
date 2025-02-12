@@ -10,6 +10,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { ProductoService } from '../Services/Producto.Service';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioService } from '../Services/usuario.service';
 
  
 @Component({
@@ -17,16 +18,16 @@ import { ToastrService } from 'ngx-toastr';
     templateUrl: './lista.component.html',
     styleUrls: ['./lista.component.css']
 })
-export class ListaComponent{
+export class ListaComponent implements OnInit{
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid!: DxDataGridComponent;
   jsonDataSource: CustomStore;
   showNavButtons = true;
-
+  admin = false
 
 
   selectedItemKeys: string[] = [];
 
-  constructor(private http: HttpClient, private servicio: ProductoService, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private servicio: ProductoService, private toastr: ToastrService, private usuarioService : UsuarioService) {
     this.jsonDataSource = new CustomStore({
         key: 'id',
         loadMode: 'raw',
@@ -43,6 +44,13 @@ export class ListaComponent{
         }
     });
 }
+  ngOnInit(): void {
+    this.usuarioService.usuarioActual$.subscribe({
+      next: (valor: any) =>{
+        if (valor.rol.includes("Admin",0)==true) this.admin=true
+      }
+    })
+  }
 
 customizeColumns = (columns: any[]) => {
   columns.find(c => c.dataField === "precio").cellTemplate = this.precioCellTemplate;
@@ -151,6 +159,8 @@ precioCellTemplate = (container: any, options: any)=> {
           });
       };
   }
+
+  
   }
 
 

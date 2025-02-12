@@ -10,6 +10,7 @@ using API.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SQLitePCL;
 
 namespace Api.Controllers
 {
@@ -90,6 +91,31 @@ namespace Api.Controllers
             var resultado = await _userManager.CheckPasswordAsync(usuario, usuarioDto.Password);
 
             if (!resultado) return Unauthorized("Usuario invalido");
+
+            return  new UsuarioDto{
+                Nombre = usuario.Nombre,
+                Apellidos = usuario.Apellidos,
+                Username = usuarioDto.Username,
+                Token = await _tokenService.CrearToken(usuario),
+                Rol = await _userManager.GetRolesAsync(usuario)
+            };
+
+           
+
+            
+            
+
+        }
+
+        [HttpPut("editarUsuario")]
+        public async Task<ActionResult<UsuarioDto>> EditarUsuario(UsuarioDto usuarioDto)
+        {
+            var usuario =  await _userManager.FindByNameAsync(usuarioDto.Username);
+
+            usuario.Apellidos= usuarioDto.Apellidos;
+            usuario.Nombre = usuarioDto.Nombre;
+
+            await _userManager.UpdateAsync(usuario);
 
             return  new UsuarioDto{
                 Nombre = usuario.Nombre,

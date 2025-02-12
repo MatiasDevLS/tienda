@@ -50,6 +50,19 @@ export class UsuarioService {
         )
       }
 
+      editarPerfil(model: Usuario)
+      {
+        return this.http.put<Usuario>(this.baseUrl + "Usuarios/editarUsuario", model).pipe(
+          map((valor: Usuario)=> {
+            const usuario = valor;
+            if (usuario) {
+              localStorage.setItem('usuario', JSON.stringify(usuario))
+              this.estadoActual.next(usuario)
+            }
+          })
+        ) 
+      } 
+
       establecerUsuario(usuario: Usuario){
         this.estadoActual.next(usuario);
       }

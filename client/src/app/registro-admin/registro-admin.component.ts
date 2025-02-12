@@ -69,7 +69,9 @@ export class RegistroAdminComponent implements OnInit {
         break;
     }
     this.creado=true;
-    this.usuarioService.registrarUsuarioAdmin(this.usuario).subscribe()
+    this.usuarioService.registrarUsuarioAdmin(this.usuario).subscribe({
+      next: () => window.location.reload()
+    })
     
   }
 

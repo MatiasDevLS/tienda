@@ -31,7 +31,8 @@ namespace Api.Data
             modelBuilder.Entity<AppRole>()
             .HasMany(p => p.UserRoles)
             .WithOne(c => c.Role)
-            .HasForeignKey(ur => ur.RoleId);
+            .HasForeignKey(ur => ur.RoleId)
+            .IsRequired();
 
             modelBuilder.Entity<Electrodomestico>()
             .HasOne(p => p.Producto)

@@ -1,17 +1,16 @@
 import { Component, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Usuario } from '../_models/Usuario';
 import { UsuarioService } from '../Services/usuario.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-registro-usuario',
-  templateUrl: './registro-usuario.component.html',
-  styleUrls: ['./registro-usuario.component.css']
+  selector: 'app-editar-perfil',
+  templateUrl: './editar-perfil.component.html',
+  styleUrls: ['./editar-perfil.component.css']
 })
-export class RegistroUsuarioComponent implements OnInit {
-
+export class EditarPerfilComponent implements OnInit {
    @ViewChild('editForm') editForm: NgForm | undefined;
     @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
       if (this.editForm?.dirty) {
@@ -29,6 +28,11 @@ export class RegistroUsuarioComponent implements OnInit {
   constructor( private fb: FormBuilder, private router: Router, private usuarioService: UsuarioService, private toast: ToastrService) { }
 
   ngOnInit(): void {
+    this.usuarioService.usuarioActual$.subscribe({
+      next: (valor: any) =>{
+        this.usuario=valor
+      }
+    })
     this.initializeForm()
 
   }
@@ -41,21 +45,22 @@ export class RegistroUsuarioComponent implements OnInit {
 
    initializeForm() {
     this.registerForm = this.fb.group({
-      nombre: ['', Validators.required],
-      apellidos: ['', Validators.required],
-        username: ['',Validators.required],
-        password: ['', Validators.required]
+        nombre: [this.usuario.nombre,Validators.required],
+        apellidos: [this.usuario.apellidos, Validators.required]
     });
   }
 
-  
+
 
   registrar() {
-    if (confirm("Confirmar la creación del usuario")){
-    this.usuario = {...this.registerForm.value};
+    if (confirm("Cambiar los datos?")){
+    var cambios = {...this.registerForm.value};
+    this.usuario.nombre = cambios.nombre
+    this.usuario.apellidos = cambios.apellidos
     this.creado=true;
-    this.usuarioService.registrarUsuario(this.usuario).subscribe()
-    this.router.navigate([''])
+    this.usuarioService.editarPerfil(this.usuario).subscribe({
+      next: () => window.location.reload() 
+    })
     
   }
 

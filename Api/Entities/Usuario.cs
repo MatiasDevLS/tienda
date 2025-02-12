@@ -5,9 +5,10 @@ namespace Api.Entities
 {
     public class Usuario : IdentityUser<int>
     {
-        
+
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
+        public string RolCreado { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
     }
 }

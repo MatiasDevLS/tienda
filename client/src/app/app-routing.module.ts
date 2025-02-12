@@ -18,6 +18,7 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { NavComponent } from './nav/nav.component';
 import { AutorizarGuard } from './_guards/autorizar.guard';
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -37,9 +38,10 @@ const routes: Routes = [
       {path: 'ventas', component: VentasComponent},
       {path: 'ventas/:id', component: VentasTabsComponent},
       {path: 'compra/zona/:id', component: ZonaCompraComponent},
+      {path: 'editarPerfil', component: EditarPerfilComponent},
       {path: 'registroAdmin', component: RegistroAdminComponent},
     ]},
-
+    {path: '**', component: InicioComponent, pathMatch: 'full'},
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

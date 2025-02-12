@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../Services/usuario.service';
 import { Usuario } from '../_models/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +15,7 @@ export class NavComponent implements OnInit {
   admin_medio=false
   admin_bajo=false
   miembro=false
-  constructor(private usuarioService : UsuarioService) { }
+  constructor(private usuarioService : UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.usuarioService.usuarioActual$.subscribe({

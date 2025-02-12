@@ -1,0 +1,19 @@
+form{
+    margin-left: 33%;
+    margin-right: 33%;
+  }
+  
+  #letrero{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-transform: capitalize;
+    text-shadow: 1px 1px 1px gray;
+  }
+  
+  button {
+    margin-right: 1%;
+  }
+  
+  #textDanger{
+    margin-top: 1%;
+  }

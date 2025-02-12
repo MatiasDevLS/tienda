@@ -76,7 +76,7 @@ id="gridContainer"
 
 </dx-data-grid>
 <div>
-    <form #registerForm="ngForm" (ngSubmit)="eliminar()">
+    <form #registerForm="ngForm" (ngSubmit)="eliminar()" *ngIf="this.admin==true">
         <table>
             <tr>
                 <td id="input"><input type="text" placeholder="Introduzca el id" name="valor" class="form-control" [(ngModel)]="valor"></td>

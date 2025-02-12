@@ -52,7 +52,7 @@ export class InicioSesionComponent implements OnInit {
     this.usuario = {...this.registerForm.value};
     this.creado=true;
     this.usuarioService.IniciarUsuario(this.usuario).subscribe()
-    this.router.navigate(['compra'])
+    this.router.navigate([''])
   }
 
 

@@ -1,0 +1,86 @@
+[
+  {
+    "UserName": "Lawson_Simon",
+    "Nombre": "Whitaker ",
+    "Apellidos": "Cooper",
+    "RolCreado": "AdminMedio",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Mattie_Richard",
+    "Nombre": "Hooper ",
+    "Apellidos": "Lowe",
+    "RolCreado": "Miembro",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Muriel_Brooks",
+    "Nombre": "Kate ",
+    "Apellidos": "Becker",
+    "RolCreado": "Miembro",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Twila_Rich",
+    "Nombre": "Claudia ",
+    "Apellidos": "Giles",
+    "RolCreado": "Miembro",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Bernice_Weaver",
+    "Nombre": "Mariana ",
+    "Apellidos": "Farrell",
+    "RolCreado": "AdminMedio",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Beach_Parks",
+    "Nombre": "Wanda ",
+    "Apellidos": "Juarez",
+    "RolCreado": "AdminMedio",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Maricela_Miranda",
+    "Nombre": "Donaldson ",
+    "Apellidos": "Hughes",
+    "RolCreado": "AdminMedio",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Carlene_Benson",
+    "Nombre": "Newman ",
+    "Apellidos": "White",
+    "RolCreado": "Admin",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Gail_Case",
+    "Nombre": "Deana ",
+    "Apellidos": "Acosta",
+    "RolCreado": "Miembro",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Walter_Jimenez",
+    "Nombre": "Fry ",
+    "Apellidos": "Doyle",
+    "RolCreado": "AdminMedio",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Kristin_Ortega",
+    "Nombre": "Byers ",
+    "Apellidos": "Allison",
+    "RolCreado": "AdminBajo",
+    "Password": "11111hJ"
+  },
+  {
+    "UserName": "Erickson_Avery",
+    "Nombre": "Lena ",
+    "Apellidos": "Shepherd",
+    "RolCreado": "AdminBajo",
+    "Password": "11111hJ"
+  }
+]

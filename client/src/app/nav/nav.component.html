@@ -37,13 +37,14 @@
             <a class="nav-link active" aria-current="page"  routerLink="inicioSesion" routerLinkActive="active">Iniciar Sesión</a>
           </li>
         </ul>
-        <div [hidden]="this.iniciado!=true" class="dropdown" dropdown >
-            <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>{{usuario.nombre}} {{usuario.apellidos}}</a>
-            <div class="dropdown-menu mt-3" *dropdownMenu>
-                <a class="dropdown-item">Editar perfil</a>
-                <a class="dropdown-item" (click)="cerrar()">Cerrar sesión</a>
-            </div>
-        </div>
       </div>
     </div>
+    <div [hidden]="this.iniciado!=true" class="dropdown form-inline my-2 my-lg-0" dropdown id="usuario">
+      <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>{{usuario.nombre}} {{usuario.apellidos}}</a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item">Carrito</a>
+          <a class="dropdown-item" routerLink="editarPerfil">Editar perfil</a>
+          <a class="dropdown-item" (click)="cerrar()">Cerrar sesión</a>
+      </div>
+  </div>
   </nav>
