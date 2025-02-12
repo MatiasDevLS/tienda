@@ -1,6 +1,6 @@
 <h2  id="letrero" class="text-center">Iniciar Sesión</h2>
 
-<form #editForm="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="off" [hidden]="creado">
+<form #editForm="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="true" [hidden]="creado">
         
         <div class="mb-3">
             <app-text-input [formControl]="$any(registerForm.controls['username'])"

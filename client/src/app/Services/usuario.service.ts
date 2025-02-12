@@ -47,4 +47,10 @@ export class UsuarioService {
       establecerUsuario(usuario: Usuario){
         this.estadoActual.next(usuario);
       }
+
+      cerrarSesion(){
+        localStorage.removeItem('usuario')
+        this.estadoActual.next(null)
+        window.location.reload()
+      }
 }

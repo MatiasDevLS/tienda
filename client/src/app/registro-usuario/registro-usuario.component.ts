@@ -51,7 +51,7 @@ export class RegistroUsuarioComponent implements OnInit {
   
 
   registrar() {
-    if (confirm("Confirmar la creación del producto")){
+    if (confirm("Confirmar la creación del usuario")){
     this.usuario = {...this.registerForm.value};
     this.creado=true;
     this.usuarioService.registrarUsuario(this.usuario).subscribe()

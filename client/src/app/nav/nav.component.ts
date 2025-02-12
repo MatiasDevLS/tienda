@@ -31,4 +31,8 @@ export class NavComponent implements OnInit {
       this.usuarioService.establecerUsuario(usuario)
   }
 
+  cerrar(){
+    this.usuarioService.cerrarSesion()
+  }
+
 }

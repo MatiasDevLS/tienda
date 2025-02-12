@@ -31,12 +31,13 @@
     </div>
     <div class="container text-center" *ngIf="this.producto.departamento!='Electrodomesticos'">
       <div>
-          <div id="carta" class="card border-secondary mb-3 text-bg-dark" style="max-width: 1200px;">
+          <div id="carta" class="card border-secondary mb-3 text-bg-dark" style="max-width: 1500px;">
               <div class="row g-0">
                 <div class="col-md-5">
-                  <img src="{{this.producto.fotoUrl}}"
+                  <img src="{{producto.fotoUrl}}"
                   class="img-fluid rounded-start" 
-                  alt="imagen del producto">
+                  alt="imagen del producto"
+                  id="imgInfor">
                 </div>
                 <div class="col-md-7">
                   <div class="card-body">

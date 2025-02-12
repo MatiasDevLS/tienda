@@ -19,3 +19,7 @@ img {
     border: 1px white solid;
     box-shadow: 2px 2px 2px white;
 }
+
+#imgInfor{
+    max-width: 42%;
+}

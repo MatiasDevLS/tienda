@@ -10,19 +10,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="datos" routerLinkActive="active">Datos</a>
+            <a class="nav-link active" aria-current="page" routerLink="datos" routerLinkActive="active" [hidden]="this.iniciado!=true">Datos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="registro" routerLinkActive="active">Crear Producto</a>
+            <a class="nav-link active" aria-current="page"  routerLink="registro" routerLinkActive="active" [hidden]="this.iniciado!=true">Crear Producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="visual" routerLinkActive="active">Visualizar</a>
+            <a class="nav-link active" aria-current="page"  routerLink="visual" routerLinkActive="active" [hidden]="this.iniciado!=true">Visualizar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="buscar" routerLinkActive="active">Actualizar Producto</a>
+            <a class="nav-link active" aria-current="page"  routerLink="buscar" routerLinkActive="active" [hidden]="this.iniciado!=true">Actualizar Producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="ventas" routerLinkActive="active">Ventas</a>
+            <a class="nav-link active" aria-current="page"  routerLink="ventas" routerLinkActive="active" [hidden]="this.iniciado!=true">Ventas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page"  routerLink="compra" routerLinkActive="active">Compras</a>
@@ -33,10 +33,14 @@
           <li class="nav-item" [hidden]="this.iniciado==true">
             <a class="nav-link active" aria-current="page"  routerLink="inicioSesion" routerLinkActive="active">Iniciar Sesión</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="inicioSesion" routerLinkActive="active">{{this.usuario.nombre}} {{this.usuario.apellidos}}</a>
-          </li>
         </ul>
+        <div [hidden]="this.iniciado!=true" class="dropdown" dropdown >
+            <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>{{usuario.nombre}} {{usuario.apellidos}}</a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+                <a class="dropdown-item">Editar perfil</a>
+                <a class="dropdown-item" (click)="cerrar()">Cerrar sesión</a>
+            </div>
+        </div>
       </div>
     </div>
   </nav>

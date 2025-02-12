@@ -25,6 +25,7 @@ import { CompraComponent } from './compra/compra.component';
 import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
     DxButtonModule,
     SharedModule,
     ModalModule,
-    TabsModule
+    TabsModule,
+    BsDropdownModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
