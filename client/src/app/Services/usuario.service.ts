@@ -31,6 +31,12 @@ export class UsuarioService {
         
       }
 
+      registrarUsuarioAdmin( model: Usuario )
+      {
+        return this.http.post<Usuario>(this.baseUrl + "Usuarios/registroUsuarioAdmin", model).pipe()
+        
+      }
+
       IniciarUsuario( model: Usuario )
       {
         return this.http.post<Usuario>(this.baseUrl + "Usuarios/inicioUsuario", model).pipe(

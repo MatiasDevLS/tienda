@@ -6,5 +6,6 @@ export interface Usuario {
     username: string
     password: string
     token: string
-    rol: []
+    rol: string[]
+    rolPrincipal: string
 }

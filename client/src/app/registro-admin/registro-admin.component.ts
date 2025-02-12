@@ -41,7 +41,7 @@ export class RegistroAdminComponent implements OnInit {
 
    initializeForm() {
     this.registerForm = this.fb.group({
-      rol: ['', Validators.required],
+      rolPrincipal: ['', Validators.required],
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
         username: ['',Validators.required],
@@ -54,9 +54,22 @@ export class RegistroAdminComponent implements OnInit {
   registrar() {
     if (confirm("Confirmar la creación del usuario")){
     this.usuario = {...this.registerForm.value};
+    switch (this.usuario.rolPrincipal) {
+      case "Admin":
+        this.usuario.rol = ["Admin"]
+        break;
+        case "Admin_medio":
+          this.usuario.rol = ["Admin_medio"]
+          break;
+          case "Admin_bajo":
+            this.usuario.rol = ["Admin_bajo"]
+            break;
+      default:
+        this.usuario.rol = []
+        break;
+    }
     this.creado=true;
-    this.usuarioService.registrarUsuario(this.usuario).subscribe()
-    this.router.navigate(['compra'])
+    this.usuarioService.registrarUsuarioAdmin(this.usuario).subscribe()
     
   }
 

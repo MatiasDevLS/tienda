@@ -21,8 +21,8 @@ export class NavComponent implements OnInit {
       next: (valor: any) =>{
         this.usuario=valor;
         if (valor.rol.includes("Admin",0)==true) this.admin=true
-        if (valor.rol.includes("Admin_medio",0)==true) this.admin_medio=true
-        if (valor.rol.includes("Admin_bajo",0)==true) this.admin_bajo=true
+        if (valor.rol.includes("AdminMedio",0)==true) this.admin_medio=true
+        if (valor.rol.includes("AdminBajo",0)==true) this.admin_bajo=true
         if (valor.rol.includes("Miembro",0)==true) this.miembro=true
         this.iniciado= !!valor;
       }

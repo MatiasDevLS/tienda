@@ -13,8 +13,8 @@ namespace Api.Data
             var roles = new List<AppRole>
             {
                 new AppRole{Name = "Admin"},
-                new AppRole{Name = "Admin_medio"},
-                new AppRole{Name = "Admin_bajo"},
+                new AppRole{Name = "AdminMedio"},
+                new AppRole{Name = "AdminBajo"},
                 new AppRole{Name = "Miembro"},
             };
 
@@ -30,7 +30,7 @@ namespace Api.Data
                 Apellidos = "Apellido1_admin Apellido2_admin"
             };
             await usuarioManager.CreateAsync(admin, "11111hJ");
-            await usuarioManager.AddToRolesAsync(admin, new[] {"Admin", "Admin_medio","Admin_bajo"});
+            await usuarioManager.AddToRolesAsync(admin, new[] {"Admin", "AdminMedio","AdminBajo"});
         }
     }
 }
