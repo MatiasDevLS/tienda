@@ -17,6 +17,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { NavComponent } from './nav/nav.component';
 import { AutorizarGuard } from './_guards/autorizar.guard';
+import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
       {path: 'ventas', component: VentasComponent},
       {path: 'ventas/:id', component: VentasTabsComponent},
       {path: 'compra/zona/:id', component: ZonaCompraComponent},
+      {path: 'registroAdmin', component: RegistroAdminComponent},
     ]},
 
 ]

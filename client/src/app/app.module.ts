@@ -26,6 +26,7 @@ import { ZonaCompraComponent } from './zona-compra/zona-compra.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     ZonaCompraComponent,
     RegistroUsuarioComponent,
     InicioSesionComponent,
+    RegistroAdminComponent,
 
   ],
   imports: [

@@ -10,19 +10,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="datos" routerLinkActive="active" [hidden]="this.iniciado!=true">Datos</a>
+            <a class="nav-link active" aria-current="page" routerLink="datos" routerLinkActive="active"  [hidden]="this.admin_bajo!=true">Datos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="registro" routerLinkActive="active" [hidden]="this.iniciado!=true">Crear Producto</a>
+            <a class="nav-link active" aria-current="page"  routerLink="registro" routerLinkActive="active"  [hidden]="this.admin_medio!=true">Crear Producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="visual" routerLinkActive="active" [hidden]="this.iniciado!=true">Visualizar</a>
+            <a class="nav-link active" aria-current="page"  routerLink="visual" routerLinkActive="active"  [hidden]="this.admin_bajo!=true">Visualizar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="buscar" routerLinkActive="active" [hidden]="this.iniciado!=true">Actualizar Producto</a>
+            <a class="nav-link active" aria-current="page"  routerLink="buscar" routerLinkActive="active" [hidden]="this.admin_medio!=true">Actualizar Producto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page"  routerLink="ventas" routerLinkActive="active" [hidden]="this.iniciado!=true">Ventas</a>
+            <a class="nav-link active" aria-current="page"  routerLink="registroAdmin" routerLinkActive="active" [hidden]="this.admin!=true">Dar de alta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  routerLink="ventas" routerLinkActive="active"  [hidden]="this.admin!=true">Ventas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page"  routerLink="compra" routerLinkActive="active">Compras</a>

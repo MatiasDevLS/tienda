@@ -38,7 +38,8 @@ namespace Api.Controllers
                 Nombre = usuario.Nombre,
                 Apellidos = usuario.Apellidos,
                 Username = usuario.UserName,
-                Token = await _tokenService.CrearToken(usuario)
+                Token = await _tokenService.CrearToken(usuario),
+                Rol = await _userManager.GetRolesAsync(usuario)
             };
 
             
@@ -60,7 +61,8 @@ namespace Api.Controllers
                 Nombre = usuario.Nombre,
                 Apellidos = usuario.Apellidos,
                 Username = usuarioDto.Username,
-                Token = await _tokenService.CrearToken(usuario)
+                Token = await _tokenService.CrearToken(usuario),
+                Rol = await _userManager.GetRolesAsync(usuario)
             };
 
            

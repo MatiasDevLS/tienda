@@ -1,0 +1,41 @@
+<h2  id="letrero" class="text-center">Dar de alta al trabajador</h2>
+
+<form #editForm="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registrar()" autocomplete="off" [hidden]="creado">
+
+    <app-text-input [formControl]="$any(registerForm.controls['nombre'])"
+        [label]="'Nombre'"></app-text-input>
+        
+        <div class="mb-3">
+            <app-text-input [formControl]="$any(registerForm.controls['apellidos'])"
+            [label]="'Apellidos'"></app-text-input>
+            <app-text-input [formControl]="$any(registerForm.controls['username'])"
+            [label]="'Usuario'"></app-text-input>
+            <app-text-input [formControl]="$any(registerForm.controls['password'])"
+            [label]="'Contraseña'"></app-text-input>
+        </div>
+        
+        <div class="mb-3">
+            <label style="margin-right:10px;">Rol: </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input" value="Admin" formControlName="rol"> Administrador
+            </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input ms-3" value="Admin_medio" formControlName="rol"> Administrador de almacenaje
+            </label>
+            <label class="form-check-label">
+                <input type="radio" class="form-check-input ms-3" value="Admin_bajo" formControlName="rol"> Trabajador
+            </label>
+        </div>
+
+
+    <div class="row" *ngIf="validationErrors">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+    </div>
+    <div class="text-center"> 
+        <button [disabled]="!registerForm.valid" class="btn btn-success me-2" type="submit" >Registrar</button>
+    </div>
+</form>

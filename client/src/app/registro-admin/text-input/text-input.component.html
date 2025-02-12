@@ -1,0 +1,20 @@
+<div class="mb-3">
+    <input
+        type={{type}}
+        [class.is-invalid]="control.touched && control.invalid"
+        class="form-control"
+        placeholder={{label}}
+    >
+    <div class="invalid-feedback" *ngIf="control.errors?.['required']">
+       Introduzca {{label}}
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">
+        {{label}} tiene que tener {{control.errors?.['minlength'].requiredLength}} carácteres
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors?.['pattern']">
+        {{label}} no cumple con el patron: 7 números y una letra en mayúscula.
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">
+        {{label}} sobrepasa los {{control.errors?.['maxlength'].requiredLength}} carácteres
+    </div>
+</div>
