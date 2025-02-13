@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JuHSABrFLPY=",
+  "dgSpecHash": "hijXnfeKSkg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj",
+  "projectFilePath": "c:\\Users\\PRACTICAS\\Documents\\tienda\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PRACTICAS\\.nuget\\packages\\cloudinarydotnet\\1.20.0\\cloudinarydotnet.1.20.0.nupkg.sha512",
     "C:\\Users\\PRACTICAS\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -68,7 +68,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "El paquete \"System.IdentityModel.Tokens.Jwt\" 6.24.0 tiene una vulnerabilidad de gravedad moderada conocida, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.24.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
       "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         "net8.0"

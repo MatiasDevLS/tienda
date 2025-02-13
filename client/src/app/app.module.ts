@@ -28,7 +28,7 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
-import { ModalComponent } from './modal/modal.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { ModalComponent } from './modal/modal.component';
     InicioSesionComponent,
     RegistroAdminComponent,
     EditarPerfilComponent,
-    ModalComponent,
+    CarritoComponent,
 
   ],
   imports: [

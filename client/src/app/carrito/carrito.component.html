@@ -1,0 +1,16 @@
+<h1>Carrito</h1>
+<ul>
+    <div *ngFor="let compra of carrito" >
+        <li>
+           Producto:{{producto.nombre}} {{producto.marca}} {{producto.descripcion}} Cantidad:{{compra.cantidad}} 
+        </li>
+    </div>
+</ul>
+<div *ngIf="listo==true">
+    Precio a pagar:
+    <div id="precio">
+        {{precioTotal}}
+    </div>
+    
+</div>
+<button type="button" class="btn btn-success" (click)="comprar()">Comprar</button>

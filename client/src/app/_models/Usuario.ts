@@ -1,3 +1,4 @@
+import { Compra } from "./Compra"
 
 export interface Usuario {
 
@@ -8,4 +9,5 @@ export interface Usuario {
     token: string
     rol: string[]
     rolPrincipal: string
+    carrito: Compra[]
 }

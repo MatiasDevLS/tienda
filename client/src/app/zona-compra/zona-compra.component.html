@@ -16,12 +16,18 @@
             <div id="precio">{{FormatPrice(producto.precio)}}</div>
 
             <div>
-                <form #registerForm="ngForm" (ngSubmit)="comprar()">
+                <form #registerForm="ngForm">
                     <table>
                         <tr>
-                            <td><input type="text" placeholder="Cantidad" name="valor" class="form-control"
+                            
+                        </tr>
+                        <tr>
+                            <td><input min="1" max="{{producto.cantidadVenta}}" type="number" placeholder="Cantidad" name="valor" class="form-control"
                                 [(ngModel)]="cantidadProd"></td>
-                                <td><button class="btn btn-success" type="submit">Comprar</button></td>
+                                <td><button class="btn btn-success" (click)="comprar()" type="submit">Comprar</button></td>
+                                <td><button class="btn btn-dark" (click)="carrito()" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                  </svg></button></td>
                         </tr>
                     </table>
                 </form>

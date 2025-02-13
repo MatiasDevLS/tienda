@@ -19,6 +19,7 @@ import { NavComponent } from './nav/nav.component';
 import { AutorizarGuard } from './_guards/autorizar.guard';
 import { RegistroAdminComponent } from './registro-admin/registro-admin.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
@@ -40,6 +41,7 @@ const routes: Routes = [
       {path: 'compra/zona/:id', component: ZonaCompraComponent},
       {path: 'editarPerfil', component: EditarPerfilComponent},
       {path: 'registroAdmin', component: RegistroAdminComponent},
+      {path: 'carrito', component: CarritoComponent},
     ]},
     {path: '**', component: InicioComponent, pathMatch: 'full'},
 ]

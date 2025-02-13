@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import localeEs from '@angular/common/locales/es';
 import { Producto } from '../_models/Producto';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsuarioService } from '../Services/usuario.service';
 
 @Component({
   selector: 'app-zona-compra',
@@ -17,12 +18,13 @@ export class ZonaCompraComponent implements OnInit {
   producto!: Producto
   cantidadProd!:number
 
-  constructor(private servicio: ProductoService, private toast: ToastrService, private activatedRoute: ActivatedRoute, private router:Router) { }
+  constructor(private servicio: ProductoService, private toast: ToastrService, private activatedRoute: ActivatedRoute, private router:Router, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.id =this.activatedRoute.snapshot.paramMap.get('id')!;
     registerLocaleData(localeEs, 'es');
     this.crear()
+    console.log(document.querySelector("input"))
   }
 
 
@@ -39,7 +41,7 @@ export class ZonaCompraComponent implements OnInit {
     }
 
   comprar(){
-    if (this.cantidadProd==0)  this.toast.error("Ha introducido un número inválido", "Error ⚠", {
+    if (this.cantidadProd==0 || this.cantidadProd==null)  this.toast.error("Ha introducido un número inválido", "Error ⚠", {
       positionClass: 'toast-bottom-left'
 })
   else
@@ -57,6 +59,27 @@ export class ZonaCompraComponent implements OnInit {
       });
       }
     }
-  
+
+    carrito(){
+      if (this.cantidadProd==0 || this.cantidadProd==null)  this.toast.error("Ha introducido un número inválido", "Error ⚠", {
+        positionClass: 'toast-bottom-left'
+  })
+  else{
+    if (this.cantidadProd>Number(document.querySelector("input")?.max)) 
+      this.toast.error("Número mayor al del stock", "Error ⚠", {
+        positionClass: 'toast-bottom-left'
+})
+  else{
+      this.usuarioService.añadirCarrito(this.id, this.cantidadProd)
+      if (this.cantidadProd>1)
+        this.toast.success("Ha añadido al carrito "+this.cantidadProd+ " productos con éxito")
+      else
+        this.toast.success("Ha añadido al carrito "+this.cantidadProd+ " producto con éxito")
+  }
+  }
+
+    }
+    
+
   }
 

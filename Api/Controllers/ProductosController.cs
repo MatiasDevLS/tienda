@@ -423,6 +423,23 @@ namespace Api.Controllers
             return   producto.Ganancias;
         }
 
+        [HttpPut("carrito")]
+        public async Task<ActionResult<List<ProductoDto>>> ObtenerCarrito(List<Compra>compras)
+        {
+            var productos= new List<ProductoDto>();
+
+            foreach (var item in compras)
+            {
+                var producto = await GetProductoById(item.Id);
+
+                productos.Add(producto.Value);
+            }
+
+            return productos;
+
+            
+        }
+
     } 
 
 
