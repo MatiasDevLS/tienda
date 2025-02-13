@@ -1,3 +1,7 @@
+<div *ngIf="miembro==true">
+  <h1 class="text-danger text-center">Acceso Bloqueado!</h1>
+</div>
+<div *ngIf="miembro==false">
 <dialog #myDialog>
     <button type="button" class="btn btn-dark" (click)="myDialog.close()" (click)="dataGrid.visible=true">X</button> 
     <div *ngIf="Creado==true">
@@ -71,17 +75,13 @@
 [rowAlternationEnabled]="true"
 [showBorders]="true"
 id="gridContainer"
-(onRowClick)="crear($event)"
-(onRowClick)="myDialog.show()"
+
 [customizeColumns]="customizeColumns"
+(onSelectionChanged)="onSelectionChanged($event)"
 >
 
-<dxo-editing
-        [allowUpdating]="true"
-        [allowAdding]="true"
-        [allowDeleting]="true"
-        mode="row">
-</dxo-editing>
+<dxo-selection mode="single"></dxo-selection>
+
 >
 
 <dxo-filter-row
@@ -140,15 +140,61 @@ id="gridContainer"
   ></dxo-header-filter>
 </dxi-column>
 
+<dxo-toolbar>
+
+  <dxi-item location="after" *ngIf="this.admin==true || this.admin_medio==true">
+    <dx-button
+      routerLink="../registro"
+      icon="addtableheader"
+      text="Crear Producto"
+    >
+    </dx-button>
+  </dxi-item>
+
+  <dxi-item location="after">
+     <dx-button
+      (onClick)="crear()"
+      (onClick)="myDialog.show()"
+      [disabled]="!selectedItemKeys.length"
+      icon="find"
+      text="Visualizar">
+    </dx-button>
+  </dxi-item>
+
+
+  <dxi-item location="after" *ngIf="this.admin==true || this.admin_medio==true">
+    <dx-button
+      (onClick)="buscar()"
+      [disabled]="!selectedItemKeys.length"
+      icon="tableproperties"
+      text="Actualizar"
+    >
+    </dx-button>
+  </dxi-item>
+
+  <dxi-item location="after" *ngIf="this.admin==true || this.admin_medio==true">
+    <dx-button
+      (onClick)="buscarVentas()"
+      [disabled]="!selectedItemKeys.length"
+      icon="datatrending"
+      text="Ventas"
+    >
+    </dx-button>
+  </dxi-item>
+
+  <dxi-item location="after" *ngIf="this.admin==true">
+    <dx-button
+      (onClick)="eliminar()"
+      [disabled]="!selectedItemKeys.length"
+      icon="trash"
+      text="Borrar"
+    >
+    </dx-button>
+  </dxi-item>
+
+
+</dxo-toolbar>
+
 </dx-data-grid>
 <div>
-    <form #registerForm="ngForm" (ngSubmit)="eliminar()" *ngIf="this.admin==true" >
-        <table>
-            <tr>
-                <td id="input"><input type="text" placeholder="Introduzca el id" name="valor" class="form-control" [(ngModel)]="valor"></td>
-                <td><button class="btn btn-danger" type="submit">Eliminar</button></td>
-            </tr>
-        </table>
-      
-      
-    </form>
+</div>

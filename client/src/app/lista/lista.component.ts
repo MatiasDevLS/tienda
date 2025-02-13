@@ -1,20 +1,18 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Producto } from '../_models/Producto';
-import { AppService } from '../Services/app.service';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { DxoHeaderFilterComponent } from 'devextreme-angular/ui/nested';
-import { delay, lastValueFrom, toArray } from 'rxjs';
-import DataSource from 'devextreme/data/data_source';
+import { lastValueFrom } from 'rxjs';
 import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { ProductoService } from '../Services/Producto.Service';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from '../Services/usuario.service';
-import { ModalComponent } from '../modal/modal.component';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData, formatCurrency } from '@angular/common';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
  
 @Component({
@@ -29,9 +27,14 @@ export class ListaComponent implements OnInit{
   admin = false
   expanded: boolean = true;
 
-  selectedItemKeys: string[] = [];
 
-  constructor(private http: HttpClient, private servicio: ProductoService, private toastr: ToastrService, private usuarioService : UsuarioService) {
+
+  selectedItemKeys: string[] = [];
+  admin_medio: boolean = false;
+  admin_bajo: boolean = false;
+  miembro: boolean = false;
+
+  constructor(private http: HttpClient, private servicio: ProductoService, private toastr: ToastrService, private usuarioService : UsuarioService, private router: Router) {
     this.jsonDataSource = new CustomStore({
         key: 'id',
         loadMode: 'raw',
@@ -53,6 +56,9 @@ export class ListaComponent implements OnInit{
     this.usuarioService.usuarioActual$.subscribe({
       next: (valor: any) =>{
         if (valor.rol.includes("Admin",0)==true) this.admin=true
+        if (valor.rol.includes("AdminMedio",0)==true) this.admin_medio=true
+        if (valor.rol.includes("AdminBajo",0)==true) this.admin_bajo=true
+        if (valor.rol.includes("Miembro",0)==true) this.miembro=true
       }
     })
   }
@@ -151,8 +157,8 @@ precioCellTemplate = (container: any, options: any)=> {
 
   eliminar(){
     if (confirm("Va a eliminar un producto?"))
-        if (confirm('Confirma eliminar el producto con id: '+ this.valor)){
-          this.servicio.eliminar(this.valor).subscribe({
+        if (confirm('Confirma eliminar el producto con id: '+ this.selectedItemKeys[0])){
+          this.servicio.eliminar(this.selectedItemKeys[0]).subscribe({
             next: () =>{
               this.dataGrid.instance.refresh(),
               this.toastr.success("Producto eliminado con exito","",{
@@ -184,9 +190,9 @@ FormatPrice(price: number): string {
   }
 
 
-  crear(e: any) {
+  crear() {
     this.dataGrid.visible=false
-    this.servicio.getProducto(e.key).subscribe({
+    this.servicio.getProducto(this.selectedItemKeys[0]).subscribe({
       next: (valor: Producto) =>{
         this.Creado=true
         this.producto=valor
@@ -208,10 +214,36 @@ FormatPrice(price: number): string {
         this.Creado=false
       } 
     });
+
+    
+
   }
 
-  
+  onSelectionChanged({ selectedRowKeys }: DxDataGridTypes.SelectionChangedEvent) {
+    this.selectedItemKeys = selectedRowKeys;
   }
+
+
+  buscar() {
+    this.servicio.getProducto(this.selectedItemKeys[0]).subscribe({
+      next: (valor: Producto) =>{
+        this.router.navigateByUrl('actualizador/' +this.selectedItemKeys[0])
+      },
+      error: error => this.toastr.error("No se ha encontrado el id","Error ⚠", {
+        positionClass: 'toast-bottom-left'})
+    });
+  }
+
+  buscarVentas() {
+    this.servicio.getProducto(this.valor).subscribe({
+      next: (valor: Producto) =>{
+        this.router.navigateByUrl('ventas/' + this.selectedItemKeys[0])
+      },
+      error: error => this.toastr.error("No se ha encontrado el id","Error ⚠", {
+        positionClass: 'toast-bottom-left'})
+    });
+  }
+}
 
 
 
