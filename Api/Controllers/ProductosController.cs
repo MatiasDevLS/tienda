@@ -35,17 +35,6 @@ namespace Api.Controllers
             foreach (var item in productos)
             {
                 if (item.Stocks.FirstOrDefault(x => x.EnVenta == true)!=null){
-                    if (item.Fotos.Count()==0){
-                        var foto = new Foto
-                        {
-                            
-                            Url = "https://res.cloudinary.com/dbqouohtd/image/upload/v1739204851/da-net7/sugqjfadlhkyiuzy6yhg.jpg",
-                            publicId = "da-net7/sugqjfadlhkyiuzy6yhg",
-                            ProductoId = item.Id,
-                            Producto = item
-                        };
-                        item.Fotos.Add(foto);
-                    }
                     if (item.Informaticas.Count()>0){
                 var PdInformatica = item.Informaticas[0];
 
@@ -120,6 +109,7 @@ namespace Api.Controllers
                 return  productoDto;
             }
             else{
+                
                 var PdElectrodomesticos = producto.Electrodomesticos[0];
 
                 var productoDto = new ProductoDto
@@ -171,6 +161,7 @@ namespace Api.Controllers
             
             if (productoDto.Departamento == "Infor")
             {
+                
 
                 var producto = new Producto
                 {
@@ -185,6 +176,16 @@ namespace Api.Controllers
                     Stocks = []
                 };
 
+                var foto = new Foto
+                {
+                    
+                    Url = "https://res.cloudinary.com/dbqouohtd/image/upload/v1739204851/da-net7/sugqjfadlhkyiuzy6yhg.jpg",
+                    publicId = "da-net7/sugqjfadlhkyiuzy6yhg",
+                    ProductoId = producto.Id,
+                    Producto = producto
+                };
+                producto.Fotos.Add(foto);
+
                 var productoInfor = new Informatica
                 {
                     Id = productoDto.Id,
@@ -197,6 +198,7 @@ namespace Api.Controllers
                     Producto = producto
 
                 };
+
 
                 producto.Informaticas.Add(productoInfor);
                 _context.Productos.Add(producto);
@@ -218,6 +220,16 @@ namespace Api.Controllers
                     Informaticas = [],
                     Stocks = []
                 };
+
+                var foto = new Foto
+                {
+                    
+                    Url = "https://res.cloudinary.com/dbqouohtd/image/upload/v1739204851/da-net7/sugqjfadlhkyiuzy6yhg.jpg",
+                    publicId = "da-net7/sugqjfadlhkyiuzy6yhg",
+                    ProductoId = producto.Id,
+                    Producto = producto
+                };
+                producto.Fotos.Add(foto);
 
                 var productoElec = new Electrodomestico
                 {

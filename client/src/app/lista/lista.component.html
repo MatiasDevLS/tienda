@@ -1,3 +1,69 @@
+<dialog #myDialog>
+    <button type="button" class="btn btn-dark" (click)="myDialog.close()" (click)="dataGrid.visible=true">X</button> 
+    <div *ngIf="Creado==true">
+      <div class="container text-center" [hidden]="!BolElectrodomesticos">
+              <div>
+                  <div id="carta" class="card border-secondary mb-3 text-bg-dark" style="max-width: 1500px;">
+                      <div class="row g-0">
+                        <div class="col-md-5">
+                          <img src="{{producto.fotoUrl}}"
+                          class="img-fluid rounded-start" 
+                          alt="imagen del producto">
+                        </div>
+                        <div class="col-md-7">
+                          <div class="card-body">
+                            <p class="card-text">Id: {{producto.id}}</p>
+                            <p class="card-text">Nombre: {{producto.nombre}} </p>
+                            <p class="card-text">Precio: {{PRECIO}}€ </p>
+                            <p class="card-text">Consumo: {{producto.consumo}} </p>
+                            <p class="card-text">Localización: {{producto.localizacion}} </p>
+                            <p class="card-text">Marca: {{producto.marca}}</p>
+                            <p class="card-text">Descripción: {{producto.descripcion}} </p>
+                          </div>
+                          <div class="card-footer">
+                              Departamento de: Electrodomésticos
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+      </div>
+      <div class="container text-center" [hidden]="!BolInformatica">
+        <div>
+            <div id="carta" class="card border-secondary mb-3 text-bg-dark" style="max-width: 1200px;">
+                <div class="row g-0">
+                  <div class="col-md-5">
+                    <img src="{{producto.fotoUrl}}"
+                    class="img-fluid rounded-start" 
+                    alt="imagen del producto">
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <p class="card-text">Id: {{producto.id}}</p>
+                      <p class="card-text">Nombre: {{producto.nombre}} </p>
+                      <p class="card-text">Precio: {{PRECIO}} </p>
+                      <p class="card-text">Tipo: {{producto.tipo}} </p>
+                      <p class="card-text">Marca: {{producto.marca}}</p>
+                      <p class="card-text">Descripción: {{producto.descripcion}} </p>
+                    </div>
+                    <div class="card-footer">
+                        Departamento de: Informática
+                      </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+    <div [hidden]="Creado" class="text-center text-danger alert alert-danger" >
+      Parece que no se ha encontrado el Id 
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-frown" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.5 3.5 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.5 4.5 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5"/>
+      </svg>
+    </div>
+</dialog>
+
 <dx-data-grid
 [allowColumnReordering]="true"
 [dataSource]="jsonDataSource"
@@ -5,9 +71,9 @@
 [rowAlternationEnabled]="true"
 [showBorders]="true"
 id="gridContainer"
+(onRowClick)="crear($event)"
+(onRowClick)="myDialog.show()"
 [customizeColumns]="customizeColumns"
-
-
 >
 
 <dxo-editing
@@ -76,7 +142,7 @@ id="gridContainer"
 
 </dx-data-grid>
 <div>
-    <form #registerForm="ngForm" (ngSubmit)="eliminar()" *ngIf="this.admin==true">
+    <form #registerForm="ngForm" (ngSubmit)="eliminar()" *ngIf="this.admin==true" >
         <table>
             <tr>
                 <td id="input"><input type="text" placeholder="Introduzca el id" name="valor" class="form-control" [(ngModel)]="valor"></td>
@@ -86,5 +152,3 @@ id="gridContainer"
       
       
     </form>
-      
-  </div>

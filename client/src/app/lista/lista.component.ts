@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Producto } from '../_models/Producto';
 import { AppService } from '../Services/app.service';
@@ -11,6 +11,10 @@ import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { ProductoService } from '../Services/Producto.Service';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from '../Services/usuario.service';
+import { ModalComponent } from '../modal/modal.component';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData, formatCurrency } from '@angular/common';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
  
 @Component({
@@ -23,7 +27,7 @@ export class ListaComponent implements OnInit{
   jsonDataSource: CustomStore;
   showNavButtons = true;
   admin = false
-
+  expanded: boolean = true;
 
   selectedItemKeys: string[] = [];
 
@@ -45,6 +49,7 @@ export class ListaComponent implements OnInit{
     });
 }
   ngOnInit(): void {
+    registerLocaleData(localeEs, 'es');
     this.usuarioService.usuarioActual$.subscribe({
       next: (valor: any) =>{
         if (valor.rol.includes("Admin",0)==true) this.admin=true
@@ -52,6 +57,7 @@ export class ListaComponent implements OnInit{
     })
   }
 
+  
 customizeColumns = (columns: any[]) => {
   columns.find(c => c.dataField === "precio").cellTemplate = this.precioCellTemplate;
 }
@@ -158,6 +164,50 @@ precioCellTemplate = (container: any, options: any)=> {
             })
           });
       };
+  }
+
+  producto!: Producto;
+  BolElectrodomesticos: boolean = false;
+  BolInformatica: boolean = false;
+  Creado: boolean = false;
+  parametros: any | [ ];
+  formattedPrice: string = '';
+  PRECIO!: string;
+  modalRef?: BsModalRef;
+  config = {
+    animated: true
+  };
+
+
+FormatPrice(price: number): string {
+    return formatCurrency(price, 'es-ES', 'EUR', 'symbol', '1.2-2');
+  }
+
+
+  crear(e: any) {
+    this.dataGrid.visible=false
+    this.servicio.getProducto(e.key).subscribe({
+      next: (valor: Producto) =>{
+        this.Creado=true
+        this.producto=valor
+        this.PRECIO=this.FormatPrice(this.producto.precio)
+        console.log(this.producto)
+        if (this.producto.departamento == "Electrodomesticos"){
+          this.BolInformatica = false;
+          this.BolElectrodomesticos = true;
+
+        }
+        else if(this.producto.departamento == "Informatica"){
+          this.BolElectrodomesticos = false;
+          this.BolInformatica = true;
+        }
+      },
+      error: error =>{
+        this.toastr.error("No se ha encontrado el id","Error ⚠", {
+          positionClass: 'toast-bottom-left'})
+        this.Creado=false
+      } 
+    });
   }
 
   
